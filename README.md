@@ -3,7 +3,7 @@
 Team:
 
 * Person 1 - Which microservice?
-* Ted Hwang - Sales microservice
+* Ted Hwang - Sales Microservice
 
 ## Design
 
