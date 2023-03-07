@@ -42,16 +42,16 @@ class Salerecord(models.Model):
 class SalepersonHistory(models.Model):
     customer = models.ForeignKey(
         Customer,
-        related_name="customer",
+        related_name="customer_history",
         on_delete=models.PROTECT
     )
     vin = models.ForeignKey(
         AutomobileVO,
-        related_name="vin",
+        related_name="vin_history",
         on_delete=models.PROTECT
     )
     sale_price = models.ForeignKey(
         Salerecord,
-        related_name="sale_price",
+        related_name="sale_price_history",
         on_delete=models.PROTECT
     )
