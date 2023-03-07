@@ -9,7 +9,6 @@ function VehicleModelList(props) {
         if (response.ok) {
             const data = await response.json();
             setModels(data.models);
-            console.log(data.models);
         }
     }
 
@@ -24,11 +23,10 @@ function VehicleModelList(props) {
             <thead>
                 <tr>
                 <th>Model Name</th>
-                <th>id </th>
-                <th>Manufacturer</th>
-                <th>Color</th>
-                <th>Bin Number</th>
-                <th>Picture</th>
+                <th>color </th>
+                <th>year</th>
+                <th>manufacturer</th>
+                <th>Vin Number</th>
                 </tr>
             </thead>
             <tbody>
@@ -36,10 +34,10 @@ function VehicleModelList(props) {
                 return(
                     <tr key={model.id}>
                     <td>{model.name}</td>
-                    <td>{ model.id }</td>
+                    <td>{ model.color }</td>
+                    <td>{ model.year }</td>
                     <td>{ model.manufacturer.name}</td>
-                    <td>{}</td>
-                    <td>{}</td>
+                    <td>{ model.vin}</td>
 
                     </tr>
                 );
