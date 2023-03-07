@@ -43,7 +43,7 @@ function CreateVehicleModelForm(props) {
                 setName('');
                 setPicture('');
                 setManufacturer('');
-                setManufacturer([]);
+                setManufacturers([]);
             }
 
 
