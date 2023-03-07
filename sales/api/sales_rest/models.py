@@ -24,12 +24,34 @@ class Customer(models.Model):
 class Salerecord(models.Model):
     automobile = models.ForeignKey(
         AutomobileVO,
-        related_name="salerecords",
-        on_delete=models.CASCADE
+        related_name="automobile",
+        on_delete=models.PROTECT
         )
     salesperson = models.ForeignKey(
         Salesperson,
-        related_name="+",
-        on_delete=models.CASCADE
+        related_name="salesperson",
+        on_delete=models.PROTECT
+    )
+    customer = models.ForeignKey(
+        Customer,
+        related_name="customer",
+        on_delete=models.PROTECT
     )
     sales_price = models.BigIntegerField()
+
+class SalepersonHistory(models.Model):
+    customer = models.ForeignKey(
+        Customer,
+        related_name="customer",
+        on_delete=models.PROTECT
+    )
+    vin = models.ForeignKey(
+        AutomobileVO,
+        related_name="vin",
+        on_delete=models.PROTECT
+    )
+    sale_price = models.ForeignKey(
+        Salerecord,
+        related_name="sale_price",
+        on_delete=models.PROTECT
+    )
