@@ -19,26 +19,24 @@ function VehicleModelList(props) {
 
     return (
         <div className="my-5 container">
+            <h2>Vehicle Models</h2>
             <table className="table table-stripped">
             <thead>
                 <tr>
-                <th>Model Name</th>
-                <th>color </th>
-                <th>year</th>
-                <th>manufacturer</th>
-                <th>Vin Number</th>
+                    <th>Name</th>
+                    <th>Manufacturer</th>
+                    <th>Picture</th>
                 </tr>
             </thead>
             <tbody>
                 {models.map(model => {
                 return(
                     <tr key={model.id}>
-                    <td>{model.name}</td>
-                    <td>{ model.color }</td>
-                    <td>{ model.year }</td>
-                    <td>{ model.manufacturer.name}</td>
-                    <td>{ model.vin}</td>
-
+                        <td>{model.name}</td>
+                        <td>{ model.manufacturer.name }</td>
+                        <td>
+                            <img src={ model.picture_url } className="img-thumbnail"/>
+                        </td>
                     </tr>
                 );
             })}

@@ -43,7 +43,7 @@ function CreateVehicleModelForm(props) {
                 setName('');
                 setPicture('');
                 setManufacturer('');
-                setManufacturer([]);
+                setManufacturers([]);
             }
 
 
@@ -68,7 +68,7 @@ function CreateVehicleModelForm(props) {
         <div className="row">
             <div className="offset-3 col-6">
                 <div className="shadow p-4 mt-4">
-                    <h1>Create Vehicle</h1>
+                    <h1>Create a vehicle model</h1>
                     <form onSubmit={handleSubmit} id="create-conference-form">
                         <div className="form-floating mb-3">
                             <input onChange={handleNameChange} value={name} placeholder="Name"
@@ -80,7 +80,7 @@ function CreateVehicleModelForm(props) {
                             <input onChange={handlePictureChange} value={picture} placeholder="picture"
                             required type="text" name="picture" id="picture"
                             className="form-control" />
-                            <label htmlFor="picture">Picture</label>
+                            <label htmlFor="picture">Picture URL</label>
                         </div>
                         <div className="mb-3">
                             <select onChange={handleManufacturerChange} value={manufacturer} name="manufacturer" id="manufacturer" className="form-select">
