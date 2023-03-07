@@ -1,8 +1,10 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import MainPage from './MainPage';
 import Nav from './Nav';
+import ManufacturerList from './ManufacturerList';
+import ManufacturerForm from './ManufacturerForm';
 
-function App() {
+function App(props) {
   return (
     <BrowserRouter>
       <Nav />
@@ -11,6 +13,7 @@ function App() {
           <Route path="/" element={<MainPage />} />
           <Route path="manufacturers">
             <Route path="" element={<ManufacturerList manufacturers={props.manufacturers} />} />
+            <Route path="new" element={<ManufacturerForm />} />
           </Route>
         </Routes>
       </div>
