@@ -28,6 +28,8 @@ function SalesPersonForm() {
         setSalesPrice(value);
     }
 
+    const [salerecords, setSalerecords] = useState([]);
+
     const handleSubmit = async (event) => {
         event.preventDefault();
 
@@ -49,6 +51,14 @@ function SalesPersonForm() {
         const response = await fetch (salesrecordUrl, fetchConfig);
         if (response.ok) {
             const newSalesrecord = await response.json();
+
+            const salerecordsUrl = 'http://localhost:8090/api/salerecords/';
+            const salerecordsResponse = await fetch(salerecordsUrl);
+            if (salerecordsResponse.ok) {
+                const salerecordsData = await salerecordsResponse.json();
+                setSalerecords(salerecordsData.Salerecords)
+            }
+
             setSalesperson('');
             setAutomobileVO('');
             setSalesPrice('');
@@ -79,6 +89,13 @@ function SalesPersonForm() {
             const customerData = await customerResponse.json();
             setCustomers(customerData.customers);
         }
+
+        const salerecordsUrl = 'http://localhost:8090/api/salerecords/';
+        const salerecordsResponse = await fetch(salerecordsUrl);
+        if (salerecordsResponse.ok) {
+            const salerecordsData = await salerecordsResponse.json();
+            setSalerecords(salerecordsData.Salerecords)
+        }
     }
 
     useEffect(() => {
@@ -96,11 +113,17 @@ function SalesPersonForm() {
                   <select onChange={handleAutomobileChange} value={automobile} required id="automobile" name="automobile" className="form-select">
                     <option value="">Choose an automobile</option>
                     {automobileVOs.map(automobile => {
-                        return (
-                            <option key={automobile.vin} value={automobile.vin}>
-                                {automobile.vin}
-                            </option>
-                        );
+                        const soldInventory = [];
+                        for (let salerecord of salerecords) {
+                            soldInventory.push(salerecord.automobile.vin);
+                        }
+                        if (!soldInventory.includes(automobile.vin)) {
+                            return (
+                                <option key={automobile.vin} value={automobile.vin}>
+                                    {automobile.vin}
+                                </option>
+                            )
+                        }
                     })};
                   </select>
                 </div>
@@ -112,7 +135,7 @@ function SalesPersonForm() {
                             <option key={salesperson.id} value={salesperson.id}>
                                 {salesperson.name}
                             </option>
-                        );
+                        )
                     })};
                   </select>
                   </div>
@@ -124,7 +147,7 @@ function SalesPersonForm() {
                                 <option key={customer.id} value={customer.id}>
                                     {customer.name}
                                 </option>
-                            );
+                            )
                         })};
                     </select>
                   </div>
