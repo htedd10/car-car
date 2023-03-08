@@ -6,27 +6,31 @@ class AutomobileVO(models.Model):
     color = models.CharField(max_length = 50)
     year = models.PositiveSmallIntegerField()
     vin = models.CharField(max_length= 17, unique=True)
-    model = models.CharField(max_length=50)
+    import_href = models.CharField(max_length=50)
+
 
     def __str__(self):
-        return self.vin
+        return self.import_href
+
+class CustomerVO(models.Model):
+    name = models.CharField(max_length=50)
 
 
 class Technician(models.Model):
     name = models.CharField(max_length=50)
-    employee_number = models.CharField(max_length=50)
+    employee_number = models.PositiveSmallIntegerField(unique=True)
 
     def __str__(self):
-        return self.employee_number
+        return self.name
 
 
 class ServiceAppoitment(models.Model):
-    vin = models.CharField(max_length = 17, unique=True)
+    vin = models.CharField(max_length = 17)
     owner_name = models.EmailField(max_length=50)
     reason = models.TextField(max_length=50)
     date = models.DateField()
     time = models.TimeField()
-    technician = models.ForeignKey(Technician, related_name = 'technician', on_delete=models.CASCADE)
+    technician = models.ForeignKey(Technician, related_name = 'Technician', on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.name
+        return self.owner_name
