@@ -71,7 +71,7 @@ function SalesRecordList(props) {
                                 {saleperson.name}
                             </option>
                         )
-                    })};
+                    })}
                   </select>
                 <table className="table table-striped">
                     <thead>
@@ -83,15 +83,17 @@ function SalesRecordList(props) {
                         </tr>
                     </thead>
                     <tbody>
-                        {salespersonRecords.filter(salespersonRecord => salespersonRecord.salesperson.id == salesperson).map(salespersonRecord => {
-                            return (
-                                <tr key={salespersonRecord.id}>
-                                    <td>{salespersonRecord.salesperson.name}</td>
-                                    <td>{salespersonRecord.customer.name}</td>
-                                    <td>{salespersonRecord.automobile.vin}</td>
-                                    <td>${salespersonRecord.sales_price}</td>
-                                </tr>
-                            );
+                        {salespersonRecords.map(salespersonRecord => {
+                            if (salespersonRecord.salesperson.id == salesperson) {
+                                return (
+                                    <tr key={salespersonRecord.id}>
+                                        <td>{salespersonRecord.salesperson.name}</td>
+                                        <td>{salespersonRecord.customer.name}</td>
+                                        <td>{salespersonRecord.automobile.vin}</td>
+                                        <td>${salespersonRecord.sales_price}</td>
+                                    </tr>
+                                );
+                            };
                             })}
                     </tbody>
                 </table>
