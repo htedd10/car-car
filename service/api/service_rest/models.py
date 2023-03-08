@@ -29,9 +29,9 @@ class ServiceAppoitment(models.Model):
     vin = models.CharField(max_length = 17)
     owner_name = models.EmailField(max_length=50)
     reason = models.TextField(max_length=50)
-    date = models.DateField()
-    time = models.TimeField()
+    date = models.DateTimeField()
+    time = models.DateTimeField()
     technician = models.ForeignKey(Technician, related_name = 'Technician', on_delete=models.CASCADE)
 
-    # def __str__(self):
-    #     return self.owner_name
+    def __str__(self):
+        return self.owner_name

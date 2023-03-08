@@ -24,7 +24,6 @@ class TechnicianEncoder(ModelEncoder):
     ]
 
 
-
 class ServiceAppoitmentEncoder(ModelEncoder):
     model = ServiceAppoitment
     properties = [
@@ -40,8 +39,6 @@ class ServiceAppoitmentEncoder(ModelEncoder):
         "technician": TechnicianEncoder()
         }
 
-    # def get_extra_data(self, o):
-    #     return {"technician" : o.technician.employee_number}
 
 
 @require_http_methods(["GET", "POST"])
@@ -54,23 +51,39 @@ def ListAutomobileVO(request):
         )
 
 @require_http_methods(["GET"])
-def ListAppointments(request):
-    return
+def ListAppointments(request, vin):
+    if vin is not None:
+        content = ServiceAppoitment.objects.filter(vin=vin)
+        return JsonResponse(
+            content,
+            encoder = ServiceAppoitmentEncoder,
+            safe=False
+        )
+
+    else:
+        content = ServiceAppoitment.objects.all()
+        return JsonResponse(
+            content,
+            encoder = ServiceAppoitmentEncoder,
+            safe=False
+
+        )
 
 @require_http_methods(["GET", "POST"])
 def ListServices(request):
     if request.method == "GET":
         content = ServiceAppoitment.objects.all()
-        print(content)
         return JsonResponse(
-            {'Appoitments': content},
-            encoder = ServiceAppoitmentEncoder,
+            content,
+            encoder=ServiceAppoitmentEncoder,
+            safe=False
         )
+
+
     else:
         content = json.loads(request.body)
         employee = Technician.objects.get(id=content["technician"])
         content["technician"] = employee
-        Appt = ServiceAppoitment.objects.create(**content)
         try:
             Appt = ServiceAppoitment.objects.create(**content)
             return JsonResponse(
