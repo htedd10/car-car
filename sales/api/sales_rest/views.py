@@ -97,12 +97,22 @@ def api_list_salerecords(request):
         )
     else:
         content = json.loads(request.body)
-        try:
-            automobile = AutomobileVO.objects.get(vin=content["automobile"])
-            content["automobile"] = automobile
-        except AutomobileVO.DoesNotExist:
+        sold_inventory = []
+        salerecords = SaleRecord.objects.all()
+        for salerecord in salerecords:
+            sold_inventory.append(salerecord.automobile.vin)
+        if content["automobile"] not in sold_inventory:
+            try:
+                automobile = AutomobileVO.objects.get(vin=content["automobile"])
+                content["automobile"] = automobile
+            except AutomobileVO.DoesNotExist:
+                return JsonResponse(
+                    {"Automobile": "Invalid automobile VIN"},
+                    status=400
+                )
+        else:
             return JsonResponse(
-                {"Automobile": "Invalid automobile VIN"},
+                {"Automobile": "Vehicle VIN has been sold already"},
                 status=400
             )
         try:
