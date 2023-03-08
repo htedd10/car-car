@@ -68,7 +68,7 @@ function SalesRecordList(props) {
                     {salespersons.map(saleperson => {
                         return (
                             <option key={saleperson.id} value={saleperson.id}>
-                                {saleperson.employee_number}
+                                {saleperson.name}
                             </option>
                         )
                     })};
