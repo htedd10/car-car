@@ -2,7 +2,7 @@ from django.shortcuts import render
 from common.json import ModelEncoder
 from django.views.decorators.http import require_http_methods
 from django.http import JsonResponse
-from .models import AutomobileVO, Technician, ServiceAppoitment, CustomerVO
+from .models import AutomobileVO, Technician, ServiceAppoitment
 import json
 
 # Create your views here.
@@ -18,24 +18,25 @@ class AutomobileVOEncoder(ModelEncoder):
 class TechnicianEncoder(ModelEncoder):
    model = Technician
    properties = [
-       'name',
-       'employee_number',
-       'id'
+       "name",
+       "employee_number",
+       "id",
     ]
+
 
 
 class ServiceAppoitmentEncoder(ModelEncoder):
     model = ServiceAppoitment
     properties = [
-        'vin',
-        'owner_name',
-        'reason',
-        'date',
-        'time',
+        "vin",
+        "owner_name",
+        "reason",
+        "date",
+        "time",
         "technician"
 
     ]
-    encoder = {
+    encoders = {
         "technician": TechnicianEncoder()
         }
 
@@ -60,21 +61,28 @@ def ListAppointments(request):
 def ListServices(request):
     if request.method == "GET":
         content = ServiceAppoitment.objects.all()
+        print(content)
         return JsonResponse(
             {'Appoitments': content},
             encoder = ServiceAppoitmentEncoder,
         )
     else:
         content = json.loads(request.body)
+        employee = Technician.objects.get(id=content["technician"])
+        content["technician"] = employee
+        Appt = ServiceAppoitment.objects.create(**content)
+        try:
+            Appt = ServiceAppoitment.objects.create(**content)
+            return JsonResponse(
+                Appt,
+                encoder=ServiceAppoitmentEncoder,
+                safe=False
+            )
+        except Exception as e:
+            print(e)
+            return JsonResponse({'error': str(e)})
 
-        technician = Technician.objects.get(id=content['technician'])
-        content['technician'] = technician
-        appointment = ServiceAppoitment.objects.create(**content)
-        return JsonResponse(
-            appointment,
-            encoder = ServiceAppoitmentEncoder,
-            safe=False
-        )
+
 
 @require_http_methods(["GET", "POST"])
 def CreateTechnician(request):

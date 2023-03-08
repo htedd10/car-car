@@ -12,16 +12,17 @@ class AutomobileVO(models.Model):
     def __str__(self):
         return self.import_href
 
-class CustomerVO(models.Model):
-    name = models.CharField(max_length=50)
 
 
 class Technician(models.Model):
     name = models.CharField(max_length=50)
     employee_number = models.PositiveSmallIntegerField(unique=True)
 
+    # def __int__(self):
+    #     return self.id
     def __str__(self):
         return self.name
+
 
 
 class ServiceAppoitment(models.Model):
@@ -32,5 +33,5 @@ class ServiceAppoitment(models.Model):
     time = models.TimeField()
     technician = models.ForeignKey(Technician, related_name = 'Technician', on_delete=models.CASCADE)
 
-    def __str__(self):
-        return self.owner_name
+    # def __str__(self):
+    #     return self.owner_name
