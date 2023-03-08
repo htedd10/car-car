@@ -45,9 +45,9 @@ function App(props) {
             <Route path="new" element={<TechnicianForm />} />
           </Route>
           <Route path="service">
-            <Route path="new" element={<TechnicianForm />} />
+            <Route path="new" element={<TechnicianForm />} />{/* create service appointment here */}
             <Route path="appointments" element={<ListServiceApointments />} />
-            <Route path="history" element={<ListServiceApointments />} />
+            <Route path="history" element={<  ListServiceApointments />} />{/* service history here*/}
           </Route>
         </Routes>
     </BrowserRouter>
