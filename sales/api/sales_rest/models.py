@@ -21,7 +21,7 @@ class Customer(models.Model):
     def __str__(self):
         return self.name
 
-class Salerecord(models.Model):
+class SaleRecord(models.Model):
     automobile = models.ForeignKey(
         AutomobileVO,
         related_name="automobile",
@@ -37,21 +37,4 @@ class Salerecord(models.Model):
         related_name="customer",
         on_delete=models.PROTECT
     )
-    sales_price = models.BigIntegerField()
-
-class SalepersonHistory(models.Model):
-    customer = models.ForeignKey(
-        Customer,
-        related_name="customer_history",
-        on_delete=models.PROTECT
-    )
-    vin = models.ForeignKey(
-        AutomobileVO,
-        related_name="vin_history",
-        on_delete=models.PROTECT
-    )
-    sale_price = models.ForeignKey(
-        Salerecord,
-        related_name="sale_price_history",
-        on_delete=models.PROTECT
-    )
+    sales_price = models.PositiveIntegerField()
