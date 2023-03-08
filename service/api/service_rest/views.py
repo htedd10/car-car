@@ -2,7 +2,7 @@ from django.shortcuts import render
 from common.json import ModelEncoder
 from django.views.decorators.http import require_http_methods
 from django.http import JsonResponse
-from .models import AutomobileVO, Technician, ServiceAppoitment, CustomerVO
+from .models import AutomobileVO, Technician, ServiceAppoitment
 import json
 
 # Create your views here.

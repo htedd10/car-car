@@ -16,8 +16,9 @@ def get_automobiles():
     content = json.loads(response.content)
     for automobile in content["autos"]:
         AutomobileVO.objects.update_or_create(
-            vin=automobile["vin"]
+            vin=automobile["vin"],
         )
+
 
 def poll():
     while True:
@@ -26,7 +27,7 @@ def poll():
             get_automobiles()
         except Exception as e:
             print(e, file=sys.stderr)
-        time.sleep(10)
+        time.sleep(30)
 
 
 if __name__ == "__main__":
