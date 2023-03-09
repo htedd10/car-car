@@ -17,7 +17,7 @@ function ManufacturerList(props) {
 
     return (
         <div className="container">
-         <h2>Manufacturers</h2>
+        <h2>Manufacturers</h2>
          <div className="row">
              <table className="table table-striped">
                  <thead>

@@ -52,13 +52,6 @@ function SalesPersonForm() {
         if (response.ok) {
             const newSalesrecord = await response.json();
 
-            const salerecordsUrl = 'http://localhost:8090/api/salerecords/';
-            const salerecordsResponse = await fetch(salerecordsUrl);
-            if (salerecordsResponse.ok) {
-                const salerecordsData = await salerecordsResponse.json();
-                setSalerecords(salerecordsData.Salerecords)
-            }
-
             setSalesperson('');
             setAutomobileVO('');
             setSalesPrice('');
@@ -100,7 +93,7 @@ function SalesPersonForm() {
 
     useEffect(() => {
         fetchData();
-    }, []);
+    }, [handleSubmit]);
 
     return (
         <div className="container">
