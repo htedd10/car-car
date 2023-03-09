@@ -17,7 +17,7 @@ function AutomobileList(props) {
 
     return (
         <div className="container">
-        <h2>Vehicle Models</h2>
+        <h2>Automobiles</h2>
         <div className="row">
             <div className="col-sm">
             <table className="table table-striped">
