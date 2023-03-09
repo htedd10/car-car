@@ -19,7 +19,6 @@ function ManufacturerList(props) {
         <div className="container">
          <h2>Manufacturers</h2>
          <div className="row">
-             <div className="col-sm">
              <table className="table table-striped">
                  <thead>
                  <tr>
@@ -36,9 +35,6 @@ function ManufacturerList(props) {
                  })}
                  </tbody>
              </table>
-             </div>
-             <div className="col-sm">
-             </div>
          </div>
      </div>
     )
