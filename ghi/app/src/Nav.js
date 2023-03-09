@@ -48,21 +48,12 @@ function Nav() {
               </NavLink>
               <ul className="dropdown-menu">
                 <li>
-
+                  <Link className="dropdown-item" to="/technician/new">Create Technician</Link>
+                  <Link className="dropdown-item" to="/service/appointments">List Service Appointments</Link>
+                  <Link className="dropdown-item" to="/service/history">Service History</Link>
+                  <Link className="dropdown-item" to="/service/new">Create Service Appointment</Link>
                 </li>
               </ul>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/technician/new">Create Technician</NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/service/appointments">List Service Appointments</NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/service/history">Service History</NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/service/new">Create Service Appointment</NavLink>
             </li>
           </ul>
         </div>
