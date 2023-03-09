@@ -28,6 +28,7 @@ function ListServiceApointments() {
                     <th>Time</th>
                     <th>Service Technician</th>
                     <th>Reason for Service</th>
+                    <th>VIP</th>
                     <th>Status</th>
                 </tr>
             </thead>
@@ -41,6 +42,7 @@ function ListServiceApointments() {
                         <td>{appt.time}</td>
                         <td>{appt.technician}</td>
                         <td>{appt.reason}</td>
+                        <td>{appt.vip}</td>
                         <td>{appt.status}</td>
                     </tr>
                 );
