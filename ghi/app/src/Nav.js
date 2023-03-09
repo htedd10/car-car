@@ -49,6 +49,7 @@ function Nav() {
               <ul className="dropdown-menu">
                 <li>
                   <Link className="dropdown-item" to="/technician/new">Create Technician</Link>
+                  <div class="dropdown-divider"></div>
                   <Link className="dropdown-item" to="/service/appointments">List Service Appointments</Link>
                   <Link className="dropdown-item" to="/service/history">Service History</Link>
                   <Link className="dropdown-item" to="/service/new">Create Service Appointment</Link>
