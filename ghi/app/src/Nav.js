@@ -19,10 +19,10 @@ function Nav() {
                   <li>
                     <Link className="dropdown-item" to="/manufacturers">Manufacturers</Link>
                     <Link className="dropdown-item" to="/manufacturers/new">Create Manufacturer</Link>
-                    <div class="dropdown-divider"></div>
+                    <div className="dropdown-divider"></div>
                     <Link className="dropdown-item" to="/models">Models</Link>
                     <Link className="dropdown-item" to="/models/new">Create Model</Link>
-                    <div class="dropdown-divider"></div>
+                    <div className="dropdown-divider"></div>
                     <Link className="dropdown-item" to="/automobiles">Automobiles</Link>
                     <Link className="dropdown-item" to="/automobiles/new">Create Automobile</Link>
                   </li>
@@ -34,11 +34,14 @@ function Nav() {
               </NavLink>
               <ul className="dropdown-menu">
                 <li>
+                  <Link className="dropdown-item" to="/salesperson/"> Salespeople</Link>
                   <Link className="dropdown-item" to="/salesperson/new">Create Salesperson</Link>
+                  <div className="dropdown-divider"></div>
+                  <Link className="dropdown-item" to="/customers/">Customers</Link>
                   <Link className="dropdown-item" to="/customers/new">Create Customer</Link>
-                  <div class="dropdown-divider"></div>
+                  <div className="dropdown-divider"></div>
                   <Link className="dropdown-item" to="/sales/">Sales</Link>
-                  <Link className="dropdown-item" to="/sales/new">Create Salerecord</Link>
+                  <Link className="dropdown-item" to="/sales/new">Create Sale</Link>
                 </li>
               </ul>
             </li>
@@ -49,7 +52,7 @@ function Nav() {
               <ul className="dropdown-menu">
                 <li>
                   <Link className="dropdown-item" to="/technician/new">Create Technician</Link>
-                  <div class="dropdown-divider"></div>
+                  <div className="dropdown-divider"></div>
                   <Link className="dropdown-item" to="/service/appointments">List Service Appointments</Link>
                   <Link className="dropdown-item" to="/service/history">Service History</Link>
                   <Link className="dropdown-item" to="/service/new">Create Service Appointment</Link>
