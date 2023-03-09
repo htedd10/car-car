@@ -55,18 +55,14 @@ def ListAppointments(request, vin):
     if vin is not None:
         content = ServiceAppoitment.objects.filter(vin=vin)
         return JsonResponse(
-            content,
+            {"History": content},
             encoder = ServiceAppoitmentEncoder,
             safe=False
         )
-
     else:
         content = ServiceAppoitment.objects.all()
         return JsonResponse(
-            content,
-            encoder = ServiceAppoitmentEncoder,
-            safe=False
-
+            {"": content}
         )
 
 @require_http_methods(["GET", "POST"])
@@ -74,12 +70,10 @@ def ListServices(request):
     if request.method == "GET":
         content = ServiceAppoitment.objects.all()
         return JsonResponse(
-            content,
+            {"Appointments": content},
             encoder=ServiceAppoitmentEncoder,
             safe=False
         )
-
-
     else:
         content = json.loads(request.body)
         employee = Technician.objects.get(id=content["technician"])
@@ -102,7 +96,7 @@ def CreateTechnician(request):
     if request.method == "GET":
         content = Technician.objects.all()
         return JsonResponse(
-            content,
+            {"Technicians": content},
             encoder = TechnicianEncoder,
             safe=False
         )

@@ -3,10 +3,14 @@ import {React,useEffect, useState} from "react";
 function ListServiceApointments() {
     const [serviceApointments, setServiceApointments] = useState([]);
     const fetchData = async() => {
-        const response = await fetch ('http://localhost:8080/api/service/');
+
+        const serviceAppointmentsUrl = 'http://localhost:8080/api/services/';
+        const response = await fetch (serviceAppointmentsUrl);
         if (response.ok) {
             const data = await response.json();
-            setServiceApointments(data.service);
+            console.log(data)
+            setServiceApointments(data.Appointments);
+            // setServiceApointments(data.service);
             // may need to change data._______ based on props val
         }
 
@@ -17,7 +21,7 @@ function ListServiceApointments() {
       }, []);
 
     return (
-        <div className="container">
+    <div className="container">
         <h2>Service Appointments</h2>
             <table className="table table-stripped">
             <thead>
@@ -40,7 +44,7 @@ function ListServiceApointments() {
                         <td>{appt.owner_name}</td>
                         <td>{appt.date }</td>
                         <td>{appt.time}</td>
-                        <td>{appt.technician}</td>
+                        <td>{appt.technician.name}</td>
                         <td>{appt.reason}</td>
                         <td>{appt.vip}</td>
                         <td>{appt.status}</td>
@@ -48,8 +52,8 @@ function ListServiceApointments() {
                 );
             })}
             </tbody>
-            </table>
-        </div>
+        </table>
+    </div>
     )
 
 }
