@@ -11,9 +11,10 @@ import CustomerForm from './Sales/CustomerForm';
 import SalesPersonForm from './Sales/SalesPersonForm';
 import SalesRecordForm from './Sales/SalesRecordForm';
 import SalesRecordList from './Sales/SalesRecordList';
-import TechnicianForm from './TechnicianForm';
-import ListServiceApointments from './ListServiceApointments';
-import CreateServiceApointments from './CreateServiceAppointment';
+import TechnicianForm from './Service/TechnicianForm';
+import ListServiceApointments from './Service/ListServiceApointments';
+import CreateServiceApointments from './Service/CreateServiceAppointment';
+import ServiceHistory from './Service/ServiceHistory';
 
 function App(props) {
   return (
@@ -45,9 +46,9 @@ function App(props) {
             <Route path="new" element={<TechnicianForm />} />
           </Route>
           <Route path="service">
-            <Route path="new" element={<TechnicianForm />} />{/* create service appointment here */}
+            <Route path="new" element={<CreateServiceApointments />} />{/* create service appointment here */}
             <Route path="appointments" element={<ListServiceApointments />} />
-            <Route path="history" element={<  ListServiceApointments />} />{/* service history here*/}
+            <Route path="history" element={< ServiceHistory />} />{/* service history here*/}
           </Route>
         </Routes>
     </BrowserRouter>
