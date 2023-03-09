@@ -30,8 +30,6 @@ function VehicleModelList(props) {
         fetchData();
       }, []);
 
-    console.log(manufacturer);
-
     return (
         <div className="my-5 container">
             <h2>Vehicle Models</h2>

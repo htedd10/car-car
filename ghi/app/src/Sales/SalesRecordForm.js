@@ -52,6 +52,7 @@ function SalesPersonForm() {
         if (response.ok) {
             const newSalesrecord = await response.json();
 
+            fetchData();
             setSalesperson('');
             setAutomobileVO('');
             setSalesPrice('');
@@ -93,7 +94,7 @@ function SalesPersonForm() {
 
     useEffect(() => {
         fetchData();
-    }, [handleSubmit]);
+    }, []);
 
     return (
         <div className="container">
