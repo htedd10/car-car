@@ -4,6 +4,12 @@ function AutomobileList(props) {
     const [automobiles, setAutomobiles] = useState([]);
     const [salerecords, setSalerecords] = useState([]);
 
+    const [select, setSelect] = useState([]);
+    const handleSelectChange = (event) => {
+        const value = event.target.value;
+        setSelect(value);
+    }
+
     const fetchData = async() => {
         const response = await fetch ('http://localhost:8100/api/automobiles/');
         if (response.ok) {
@@ -19,11 +25,6 @@ function AutomobileList(props) {
         }
     }
 
-    console.log(salerecords);
-    for (let salerecord of salerecords) {
-        console.log(salerecord);
-    }
-
     useEffect(() => {
         fetchData();
       }, []);
@@ -33,6 +34,11 @@ function AutomobileList(props) {
         <div className="row">
             <div className="col-sm">
             <h2>Automobiles</h2>
+            <select onChange={handleSelectChange} value={select} required id="automobiles" name="automobiles" className="form-select">
+                    <option value="">All</option>
+                    <option value="in-stock">In-Stock</option>
+                    <option value="sold">Sold</option>
+            </select>
                 <table className="table table-striped">
                     <thead>
                     <tr>
@@ -45,15 +51,45 @@ function AutomobileList(props) {
                     </thead>
                     <tbody>
                     {automobiles.map(automobile => {
-                        return (
-                            <tr key={automobile.id}>
-                                <td>{automobile.vin}</td>
-                                <td>{automobile.color}</td>
-                                <td>{automobile.year}</td>
-                                <td>{automobile.model.name}</td>
-                                <td>{automobile.model.manufacturer.name}</td>
-                            </tr>
-                        );
+                        const soldInventory = [];
+                        for (let salerecord of salerecords) {
+                            soldInventory.push(salerecord.automobile.vin)
+                        }
+                        if (select=="") {
+                            return (
+                                <tr key={automobile.id}>
+                                    <td>{automobile.vin}</td>
+                                    <td>{automobile.color}</td>
+                                    <td>{automobile.year}</td>
+                                    <td>{automobile.model.name}</td>
+                                    <td>{automobile.model.manufacturer.name}</td>
+                                </tr>
+                            );
+                        } else if (select=="sold") {
+                            if (soldInventory.includes(automobile.vin)) {
+                                return (
+                                    <tr key={automobile.id}>
+                                        <td>{automobile.vin}</td>
+                                        <td>{automobile.color}</td>
+                                        <td>{automobile.year}</td>
+                                        <td>{automobile.model.name}</td>
+                                        <td>{automobile.model.manufacturer.name}</td>
+                                    </tr>
+                                );
+                            }
+                        } else {
+                            if (!(soldInventory.includes(automobile.vin))) {
+                                return (
+                                    <tr key={automobile.id}>
+                                        <td>{automobile.vin}</td>
+                                        <td>{automobile.color}</td>
+                                        <td>{automobile.year}</td>
+                                        <td>{automobile.model.name}</td>
+                                        <td>{automobile.model.manufacturer.name}</td>
+                                    </tr>
+                                );
+                            }
+                        }
                     })}
                     </tbody>
                 </table>
