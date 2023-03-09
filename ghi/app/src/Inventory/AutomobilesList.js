@@ -2,6 +2,7 @@ import { React, useEffect, useState } from "react";
 
 function AutomobileList(props) {
     const [automobiles, setAutomobiles] = useState([]);
+    const [salerecords, setSalerecords] = useState([]);
 
     const fetchData = async() => {
         const response = await fetch ('http://localhost:8100/api/automobiles/');
@@ -9,6 +10,18 @@ function AutomobileList(props) {
             const data = await response.json();
             setAutomobiles(data.autos);
         }
+
+        const salerecordsUrl = 'http://localhost:8090/api/salerecords/';
+        const salerecordsResponse = await fetch(salerecordsUrl);
+        if (salerecordsResponse.ok) {
+            const salerecordsData = await salerecordsResponse.json();
+            setSalerecords(salerecordsData.Salerecords)
+        }
+    }
+
+    console.log(salerecords);
+    for (let salerecord of salerecords) {
+        console.log(salerecord);
     }
 
     useEffect(() => {
@@ -17,35 +30,33 @@ function AutomobileList(props) {
 
     return (
         <div className="container">
-        <h2>Automobiles</h2>
         <div className="row">
             <div className="col-sm">
-            <table className="table table-striped">
-                <thead>
-                <tr>
-                    <th>VIN</th>
-                    <th>Color</th>
-                    <th>Year</th>
-                    <th>Model</th>
-                    <th>Manufacturer</th>
-                </tr>
-                </thead>
-                <tbody>
-                {automobiles.map(automobile => {
-                    return (
-                    <tr key={automobile.id}>
-                        <td>{automobile.vin}</td>
-                        <td>{automobile.color}</td>
-                        <td>{automobile.year}</td>
-                        <td>{automobile.model.name}</td>
-                        <td>{automobile.model.manufacturer.name}</td>
+            <h2>Automobiles</h2>
+                <table className="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>VIN</th>
+                        <th>Color</th>
+                        <th>Year</th>
+                        <th>Model</th>
+                        <th>Manufacturer</th>
                     </tr>
-                    );
-                })}
-                </tbody>
-            </table>
-            </div>
-            <div className="col-sm">
+                    </thead>
+                    <tbody>
+                    {automobiles.map(automobile => {
+                        return (
+                            <tr key={automobile.id}>
+                                <td>{automobile.vin}</td>
+                                <td>{automobile.color}</td>
+                                <td>{automobile.year}</td>
+                                <td>{automobile.model.name}</td>
+                                <td>{automobile.model.manufacturer.name}</td>
+                            </tr>
+                        );
+                    })}
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>

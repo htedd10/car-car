@@ -27,6 +27,7 @@ function SalesRecordList(props) {
             setSalespersonRecords(recorddata.Salerecords);
         }
     }
+
     useEffect(() => {
         fetchData();
       }, []);
@@ -36,35 +37,8 @@ function SalesRecordList(props) {
             <div className="row">
                 <div className="col-sm">
                 <h2>List of Sales</h2>
-                <table className="table table-striped">
-                    <thead>
-                        <tr>
-                            <th>Salesperson</th>
-                            <th>Employee Number</th>
-                            <th>Customer</th>
-                            <th>Automobile</th>
-                            <th>Sale Price</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    {salespersonRecords.map(salespersonRecord => {
-                        return (
-                        <tr key={salespersonRecord.id}>
-                            <td>{ salespersonRecord.salesperson.name }</td>
-                            <td>{ salespersonRecord.salesperson.employee_number }</td>
-                            <td>{ salespersonRecord.customer.name }</td>
-                            <td>{ salespersonRecord.automobile.vin }</td>
-                            <td>${ salespersonRecord.sales_price }</td>
-                        </tr>
-                        );
-                    })}
-                    </tbody>
-                </table>
-                </div>
-                <div className="col-sm">
-                <h2>Salesperson History</h2>
                 <select onChange={handleSalespersonChange} value={salesperson} required id="salespersons" name="salespersons" className="form-select">
-                    <option value="">Choose a salesperson</option>
+                    <option value="">All Sales</option>
                     {salespersons.map(saleperson => {
                         return (
                             <option key={saleperson.id} value={saleperson.id}>
@@ -93,7 +67,16 @@ function SalesRecordList(props) {
                                         <td>${salespersonRecord.sales_price}</td>
                                     </tr>
                                 );
-                            };
+                            } else if (salesperson == "") {
+                                return (
+                                    <tr key={salespersonRecord.id}>
+                                        <td>{salespersonRecord.salesperson.name}</td>
+                                        <td>{salespersonRecord.customer.name}</td>
+                                        <td>{salespersonRecord.automobile.vin}</td>
+                                        <td>${salespersonRecord.sales_price}</td>
+                                    </tr>
+                                );
+                            }
                             })}
                     </tbody>
                 </table>
