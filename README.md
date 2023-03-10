@@ -5,7 +5,6 @@ Team:
 * Ted Hwang - Sales Microservice
 
 <h2 style="text-align: center;">DESIGN</h2>
-<hr>
 
 <h3 style="text-align:center;">Inventory Microservice</h3>
 
@@ -120,7 +119,7 @@ Team:
         }
     }
 
-<h4>list automobiles</h4>
+<h4>List automobiles</h4>
 
     {
         "autos": [
@@ -386,6 +385,33 @@ Team:
         ]
     }
 
+<h4>Get a list of automobile value objects</h4>
+
+    {
+        "automobiles": [
+            {
+                "color": "White",
+                "year": 2022,
+                "vin": "1G1AF1F57A7194000",
+                "import_href": "/api/automobiles/1G1AF1F57A7194000/"
+            },
+            {
+                "color": "Yellow",
+                "year": 2022,
+                "vin": "1G1AF1F57A7194001",
+                "import_href": "/api/automobiles/1G1AF1F57A7194001/"
+            },
+            {
+                "color": "Red",
+                "year": 2022,
+                "vin": "1G1AF1F57A7194003",
+                "import_href": "/api/automobiles/1G1AF1F57A7194003/"
+            },
+        ]
+    }
+
+
+
 </details>
 
 <details>
@@ -393,8 +419,49 @@ Team:
 <br>
 
 <h4>Create a service</h4>
+<h5>JSON Body</h5>
+
+    {
+        "vin": "1C3CC5FB2AN12023",
+        "owner_name": "Bill Horst",
+        "reason": "Oil Change",
+        "date": "2010-12-01 08:15",
+        "time": "2010-12-01 08:15",
+        "technician": 1
+    }
+
+<h5>JSON Response</h5>
+
+    {
+        "vin": "1C3CC5FB2AN12023",
+        "owner_name": "Bill Horst",
+        "reason": "Oil Change",
+        "date": "2010-12-01 08:15",
+        "time": "2010-12-01 08:15",
+        "technician": {
+            "name": "Josh Elder",
+            "employee_number": 12312,
+            "id": 1
+        },
+        "cancelled": false,
+        "completed": false,
+        "id": 2
+    }
 
 <h4>Create technician</h4>
+<h5>JSON Body</h5>
+
+    {
+        "name": "Ted",
+        "employee_number": 1231
+    }
+
+<h5>JSON Response</h5>
+
+    {
+        "name": "Ted",
+        "employee_number": 1231
+    }
 
 </details>
 
@@ -423,9 +490,166 @@ Team:
 <details>
     <summary>Sales "GET" Request</summary>
 <br>
+<h4>Get a list of salespeople</h4>
+
+    {
+        "salesperson": [
+            {
+                "id": 1,
+                "name": "Brandon Jang",
+                "employee_number": 3444412
+            },
+            {
+                "id": 2,
+                "name": "Ted Hwang",
+                "employee_number": 1231313
+            }
+        ]
+    }
+
+<h4>Get a list of customers</h4>
+
+    {
+        "customers": [
+            {
+                "id": 1,
+                "name": "Bobby Oh",
+                "address": "This is not a real address",
+                "phone_number": "1234567891"
+            },
+            {
+                "id": 2,
+                "name": "Andrew Neeme",
+                "address": "This is not a real address",
+                "phone_number": "1234567890"
+            },
+        ]
+    }
+
+<h4>Get a list of salerecords</h4>
+
+    {
+        "Salerecords": [
+            {
+                "id": 1,
+                "automobile": {
+                    "vin": "1C3CC5FB2AN12014"
+                },
+                "salesperson": {
+                    "id": 1,
+                    "name": "Ted Hwang",
+                    "employee_number": 123456
+                },
+                "customer": {
+                    "id": 1,
+                    "name": "Bobby Oh",
+                    "address": "This is not a real address",
+                    "phone_number": "1234567891"
+                },
+                "sales_price": 28000
+            },
+            {
+                "id": 2,
+                "automobile": {
+                    "vin": "1C3CC5FB2AN12015"
+                },
+                "salesperson": {
+                    "id": 2,
+                    "name": "Billy Jr",
+                    "employee_number": 308550
+                },
+                "customer": {
+                    "id": 1,
+                    "name": "Bobby Oh",
+                    "address": "This is not a real address",
+                    "phone_number": "1234567891"
+                },
+                "sales_price": 28000
+            },
+        ]
+    }
+
+<h4>Get a list of automobile value objects</h4>
+
+    {
+        "automobileVOs": [
+            {
+                "vin": "1G1AF1F57A7194001"
+            },
+            {
+                "vin": "1G1AF1F57A7194003"
+            },
+        ]
+    }
+
 </details>
 
 <details>
     <summary>Sales "POST" Request</summary>
 <br>
+<h4>Create a salesperson</h4>
+<h5>JSON Body</h5>
+
+    {
+        "name": "Ted Hwang",
+        "employee_number": 1231313
+    }
+
+<h5>JSON Response</h5>
+
+    {
+        "id": 2,
+        "name": "Ted Hwang",
+        "employee_number": 1231313
+    }
+
+<h4>Create a customer</h4>
+<h5>JSON Body</h5>
+
+    {
+        "name": "Rock Rock",
+        "address": "Fake",
+        "phone_number": 1230001234
+    }
+
+<h5>JSON Response</h5>
+
+    {
+        "id": 1,
+        "name": "Rock Rock",
+        "address": "Fake",
+        "phone_number": 1230001234
+    }
+
+<h4>Create a salerecord</h4>
+<h5>JSON Body</h5>
+
+    {
+        "automobile": "1G1AF1F57A7194000",
+        "salesperson": 1,
+        "customer": 1,
+        "sales_price": 28000
+    }
+
+<h5>JSON Response</h5>
+
+    {
+        "id": 1,
+        "automobile": {
+            "vin": "1G1AF1F57A7194000"
+        },
+        "salesperson": {
+            "id": 1,
+            "name": "Brandon Jang",
+            "employee_number": 3444412
+        },
+        "customer": {
+            "id": 1,
+            "name": "Rock Rock",
+            "address": "Fake",
+            "phone_number": "1230001234"
+        },
+        "sales_price": 28000
+    }
+
 </details>
