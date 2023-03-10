@@ -1,44 +1,37 @@
 import {React, useState} from "react";
 
-
 function TechnicianForm() {
-    const [name, setName] = useState('');
-    const handleNameChange = (event) => {
-        const value = event.target.value;
-        setName(value);
-    }
-
-    const [employee_number, setEmployeeNumber] = useState('');
-    const handleEmployeeNumberChange = (event) => {
-        const value = event.target.value;
-        setEmployeeNumber(value);
-    }
-
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-
-        const data = {
-            name,
-            employee_number,
-        }
-
-        const technicianUrl = 'http://localhost:8080/api/technician/'
-        const fetchConfig = {
-            method: "post",
-            body: JSON.stringify(data),
-            headers: {
-                'Content-Type': 'application/json',
-            }
-        }
-        const response = await fetch (technicianUrl, fetchConfig);
-
-        if (response.ok) {
-            const newTechnician = await response.json();
-            setName('');
-            setEmployeeNumber('');
-        }
-    }
-
+  const [name, setName] = useState('');
+  const handleNameChange = (event) => {
+      const value = event.target.value;
+      setName(value);
+  }
+  const [employee_number, setEmployeeNumber] = useState('');
+  const handleEmployeeNumberChange = (event) => {
+      const value = event.target.value;
+      setEmployeeNumber(value);
+  }
+  const handleSubmit = async (event) => {
+      event.preventDefault();
+      const data = {
+          name,
+          employee_number,
+      }
+      const technicianUrl = 'http://localhost:8080/api/technician/'
+      const fetchConfig = {
+          method: "post",
+          body: JSON.stringify(data),
+          headers: {
+              'Content-Type': 'application/json',
+          }
+      }
+      const response = await fetch (technicianUrl, fetchConfig);
+      if (response.ok) {
+          const newTechnician = await response.json();
+          setName('');
+          setEmployeeNumber('');
+      }
+  }
     return (
     <div className="container">
         <div className="row">
@@ -61,6 +54,5 @@ function TechnicianForm() {
         </div>
     </div>
     )
-
 }
 export default TechnicianForm;

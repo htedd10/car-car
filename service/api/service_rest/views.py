@@ -5,7 +5,7 @@ from django.http import JsonResponse
 from .models import AutomobileVO, Technician, ServiceAppoitment
 import json
 
-# Create your views here.
+
 class AutomobileVOEncoder(ModelEncoder):
     model = AutomobileVO
     properties = [
@@ -14,6 +14,7 @@ class AutomobileVOEncoder(ModelEncoder):
         'vin',
         'import_href'
     ]
+
 
 class TechnicianEncoder(ModelEncoder):
    model = Technician
@@ -32,13 +33,15 @@ class ServiceAppoitmentEncoder(ModelEncoder):
         "reason",
         "date",
         "time",
-        "technician"
+        "technician",
+        "cancelled",
+        "completed",
+        "id"
 
     ]
     encoders = {
         "technician": TechnicianEncoder()
         }
-
 
 
 @require_http_methods(["GET", "POST"])
@@ -49,6 +52,34 @@ def ListAutomobileVO(request):
             {"automobiles": automobiles},
             encoder = AutomobileVOEncoder
         )
+
+
+@require_http_methods(["PUT"])
+def UpdateStatus(request, id):
+    content = json.loads(request.body)
+    if "completed" in content:
+        appt = ServiceAppoitment.objects.get(id=id)
+        appt.completed = True
+        appt.save()
+        return JsonResponse(
+            appt,
+            encoder=ServiceAppoitmentEncoder,
+            safe=False
+        )
+    elif "cancelled" in content:
+        appt = ServiceAppoitment.objects.get(id=id)
+        appt.cancelled = True
+        appt.save()
+        return JsonResponse(
+            appt,
+            encoder=ServiceAppoitmentEncoder,
+            safe=False
+        )
+    else:
+        return JsonResponse(
+            {"error": "Invalid request"}
+        )
+
 
 @require_http_methods(["GET"])
 def ListAppointments(request, vin):
@@ -62,8 +93,11 @@ def ListAppointments(request, vin):
     else:
         content = ServiceAppoitment.objects.all()
         return JsonResponse(
-            {"": content}
+            {"": content},
+            encoder = ServiceAppoitmentEncoder,
+            safe= False
         )
+
 
 @require_http_methods(["GET", "POST"])
 def ListServices(request):
@@ -88,7 +122,6 @@ def ListServices(request):
         except Exception as e:
             print(e)
             return JsonResponse({'error': str(e)})
-
 
 
 @require_http_methods(["GET", "POST"])

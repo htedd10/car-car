@@ -1,51 +1,42 @@
 import {React,useEffect, useState} from "react";
-import TechnicianForm from "./TechnicianForm";
-// UNFINISHED
+
 function CreateServiceApointments() {
     const [owner_name, setOwnerName] = useState('');
     const handleOwnerNameChange = (event) => {
         const value = event.target.value;
         setOwnerName(value);
     }
-
     const [vin, setVin] = useState('');
     const handleVinChange = (event) => {
         const value = event.target.value;
         setVin(value);
     }
-
     const [reason, setReason] = useState('');
     const handleReasonChange = (event) => {
         const value = event.target.value;
         setReason(value);
     }
-
     const [date, setDate] = useState('');
     const handleDateChange = (event) => {
         const value = event.target.value;
         setDate(value);
     }
-
     const [time, setTime] = useState('');
     const handleTimeChange = (event) => {
         const value = event.target.value;
         setTime(value);
     }
-
     const [technician, setTechnician] = useState('');
     const handleTechnicianChange = (event) => {
         const value = event.target.value;
         setTechnician(value);
     }
-
     const [technicians, setTechnicians] = useState([]);
     const dateDateTime = new Date(date + ' ' + time);
     const timeDateTime = new Date(date + ' ' + time);
 
-
     const handleSubmit = async (event) => {
         event.preventDefault();
-
         const data = {
             "owner_name" : owner_name,
             "vin" : vin,
@@ -54,8 +45,6 @@ function CreateServiceApointments() {
             "time" : timeDateTime,
             "technician" : technician,
         }
-        console.log("data", data);
-
         const serviceApointmentUrl = 'http://localhost:8080/api/services/';
         const fetchConfig = {
             method: "post",
@@ -65,7 +54,6 @@ function CreateServiceApointments() {
             },
         };
         const response = await fetch (serviceApointmentUrl, fetchConfig);
-
         if (response.ok) {
             const newServiceApointment = await response.json();
 
@@ -85,13 +73,11 @@ function CreateServiceApointments() {
           const techniciansData = await techniciansResponse.json();
           setTechnicians(techniciansData.Technicians)
       }
-
     }
 
     useEffect(() => {
       fetchData();
   }, []);
-
     return (
         <div className="container">
         <div className="row">
@@ -112,11 +98,11 @@ function CreateServiceApointments() {
                   <label htmlFor="reason">Reason</label>
                 </div>
                 <div className="form-floating mb-3">
-                  <input onChange={handleDateChange} value={date} placeholder="date" required type="text" name="date" id="date" className="form-control"/>
+                  <input onChange={handleDateChange} value={date} placeholder="date" required type="date" name="date" id="date" className="form-control"/>
                   <label htmlFor="date">Date - Please enter as YYYY-MM-DD </label>
                 </div>
                 <div className="form-floating mb-3">
-                  <input onChange={handleTimeChange} value={time} placeholder="time" required type="text" name="time" id="time" className="form-control"/>
+                  <input onChange={handleTimeChange} value={time} placeholder="time" required type="time" name="time" id="time" className="form-control"/>
                   <label htmlFor="time">Time - Please enter as HH:MM</label>
                 </div>
                 <div className="mb-3">
@@ -138,7 +124,6 @@ function CreateServiceApointments() {
         </div>
       </div>
     )
-
 }
 
 export default CreateServiceApointments;

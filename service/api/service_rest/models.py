@@ -32,6 +32,8 @@ class ServiceAppoitment(models.Model):
     date = models.DateTimeField()
     time = models.DateTimeField()
     technician = models.ForeignKey(Technician, related_name = 'Technician', on_delete=models.CASCADE)
+    cancelled = models.BooleanField(default=False)
+    completed = models.BooleanField(default=False)
 
     def __str__(self):
         return self.owner_name
