@@ -4,7 +4,7 @@ function AutomobileList(props) {
     const [automobiles, setAutomobiles] = useState([]);
     const [salerecords, setSalerecords] = useState([]);
 
-    const [select, setSelect] = useState([]);
+    const [select, setSelect] = useState('');
     const handleSelectChange = (event) => {
         const value = event.target.value;
         setSelect(value);

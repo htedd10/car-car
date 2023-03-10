@@ -2,10 +2,14 @@
 
 Team:
 
-* Vincent Manfre- Which microservice?
+* Vincent Manfre- Service Microservice
 * Ted Hwang - Sales Microservice
 
 ## Design
+Instructions to Start the Project
+ 1) docker volume create beta-data
+ 2) docker-compose build
+ 3) docker-compose up
 
 ## Service microservice
 
