@@ -1,8 +1,22 @@
 <h1 style="text-align: center;">CARCAR</h1>
 
-Team:
-* Vincent Manfre- Service Microservice
-* Ted Hwang - Sales Microservice
+<h3>Team</h3>
+
+| Person | Microservice |
+| --- | --- |
+| Vincent Manfre | Service |
+| Ted Hwang | Sales |
+
+<h3>How to Start CarCar</h3>
+<p>Once you have succesfully cloned the car car repo onto your local machine navigate
+to your terminal. Once there, change your working directory to the top level of this
+project and run the following commands:</p>
+
+| Steps | Command |
+| --- | --- |
+| 1 | docker volume create beta-data |
+| 2 | docker-compose build |
+| 3 | docker-compose up |
 
 <h2 style="text-align: center;">DESIGN</h2>
 
