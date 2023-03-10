@@ -1,7 +1,5 @@
 <h1 style="text-align: center;">CarCar</h1>
-<h4>A car dealership management application that can handle an inventory, service center, and sales </h4>
-
-<br>
+<p>A car dealership management application that can handle an inventory, service center, and sales </p>
 
 <h3>Team</h3>
 
@@ -23,7 +21,7 @@ project and run the following commands:</p>
 
 <h2 style="text-align: center;">Design</h2>
 
-
+![Diagram](Excalidraw.png)
 
 <h3 style="text-align:center;">Inventory Microservice</h3>
 
