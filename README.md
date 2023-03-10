@@ -1,4 +1,7 @@
-<h1 style="text-align: center;">CARCAR</h1>
+<h1 style="text-align: center;">CarCar</h1>
+<h4>A car dealership management application that can handle an inventory, service center, and sales </h4>
+
+<br>
 
 <h3>Team</h3>
 
@@ -18,7 +21,9 @@ project and run the following commands:</p>
 | 2 | docker-compose build |
 | 3 | docker-compose up |
 
-<h2 style="text-align: center;">DESIGN</h2>
+<h2 style="text-align: center;">Design</h2>
+
+
 
 <h3 style="text-align:center;">Inventory Microservice</h3>
 
