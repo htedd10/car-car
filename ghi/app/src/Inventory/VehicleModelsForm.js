@@ -2,18 +2,12 @@ import {React, useEffect, useState} from "react";
 
 function CreateVehicleModelForm(props) {
     const [name, setName] = useState('');
-    const [picture, setPicture] = useState('');
     const [manufacturers, setManufacturers] = useState([]);
     const [manufacturer, setManufacturer] = useState('');
 
     const handleNameChange = (event) => {
         const value = event.target.value;
         setName(value);
-    }
-
-    const handlePictureChange = (event) => {
-        const value = event.target.value;
-        setPicture(value);
     }
 
     const handleManufacturerChange = (event) => {
@@ -26,7 +20,6 @@ function CreateVehicleModelForm(props) {
         const data = {}
 
         data.name = name;
-        data.picture_url = picture;
         data.manufacturer_id = manufacturer;
 
 
@@ -41,7 +34,6 @@ function CreateVehicleModelForm(props) {
             const response = await fetch (ModelUrl, fetchConfig);
             if (response.ok) {
                 setName('');
-                setPicture('');
                 setManufacturer('');
             }
 
@@ -74,12 +66,6 @@ function CreateVehicleModelForm(props) {
                             required type="text" name="name" id="name"
                             className="form-control" />
                             <label htmlFor="name">Name</label>
-                        </div>
-                        <div className="form-floating mb-3">
-                            <input onChange={handlePictureChange} value={picture} placeholder="picture"
-                            required type="text" name="picture" id="picture"
-                            className="form-control" />
-                            <label htmlFor="picture">Picture URL</label>
                         </div>
                         <div className="mb-3">
                             <select onChange={handleManufacturerChange} value={manufacturer} name="manufacturer" id="manufacturer" className="form-select">

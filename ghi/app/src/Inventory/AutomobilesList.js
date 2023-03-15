@@ -43,6 +43,7 @@ function AutomobileList(props) {
                     <thead>
                     <tr>
                         <th>VIN</th>
+                        <th>Picture</th>
                         <th>Color</th>
                         <th>Year</th>
                         <th>Model</th>
@@ -59,6 +60,9 @@ function AutomobileList(props) {
                             return (
                                 <tr key={automobile.id}>
                                     <td>{automobile.vin}</td>
+                                    <td>
+                                        <img src={ automobile.picture_url } className="img-thumbnail"/>
+                                    </td>
                                     <td>{automobile.color}</td>
                                     <td>{automobile.year}</td>
                                     <td>{automobile.model.name}</td>
@@ -70,6 +74,9 @@ function AutomobileList(props) {
                                 return (
                                     <tr key={automobile.id}>
                                         <td>{automobile.vin}</td>
+                                        <td>
+                                            <img src={ automobile.picture_url } className="img-thumbnail"/>
+                                        </td>
                                         <td>{automobile.color}</td>
                                         <td>{automobile.year}</td>
                                         <td>{automobile.model.name}</td>
@@ -82,6 +89,9 @@ function AutomobileList(props) {
                                 return (
                                     <tr key={automobile.id}>
                                         <td>{automobile.vin}</td>
+                                        <td>
+                                            <img src={ automobile.picture_url } className="img-thumbnail"/>
+                                        </td>
                                         <td>{automobile.color}</td>
                                         <td>{automobile.year}</td>
                                         <td>{automobile.model.name}</td>

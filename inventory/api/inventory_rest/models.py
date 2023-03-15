@@ -11,7 +11,6 @@ class Manufacturer(models.Model):
 
 class VehicleModel(models.Model):
     name = models.CharField(max_length=100)
-    picture_url = models.URLField()
 
     manufacturer = models.ForeignKey(
         Manufacturer,
@@ -27,6 +26,7 @@ class Automobile(models.Model):
     color = models.CharField(max_length=50)
     year = models.PositiveSmallIntegerField()
     vin = models.CharField(max_length=17, unique=True)
+    picture_url = models.URLField()
 
     model = models.ForeignKey(
         VehicleModel,

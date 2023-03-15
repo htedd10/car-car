@@ -48,7 +48,6 @@ function VehicleModelList(props) {
                 <tr>
                     <th>Manufacturer</th>
                     <th>Name</th>
-                    <th>Picture</th>
                 </tr>
             </thead>
             <tbody>
@@ -58,9 +57,6 @@ function VehicleModelList(props) {
                         <tr key={model.id}>
                             <td>{ model.manufacturer.name }</td>
                             <td>{model.name}</td>
-                            <td>
-                                <img src={ model.picture_url } className="img-thumbnail"/>
-                            </td>
                         </tr>
                     );
                 } else if (manufacturer == "") {
@@ -68,9 +64,6 @@ function VehicleModelList(props) {
                         <tr key={model.id}>
                             <td>{ model.manufacturer.name }</td>
                             <td>{model.name}</td>
-                            <td>
-                                <img src={ model.picture_url } className="img-thumbnail"/>
-                            </td>
                         </tr>
                     );
                 }

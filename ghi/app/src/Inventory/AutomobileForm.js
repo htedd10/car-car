@@ -3,6 +3,12 @@ import { React, useEffect, useState } from "react";
 function AutomobileForm() {
     const [models, setModels] = useState([]);
 
+    const [picture, setPicture] = useState('');
+    const handlePictureChange = (event) => {
+      const value = event.target.value;
+      setPicture(value);
+    }
+
     const [color, setColor] = useState('');
     const handleColorChange = (event) => {
         const value = event.target.value;
@@ -31,6 +37,7 @@ function AutomobileForm() {
         event.preventDefault();
 
         const data = {
+            "picture_url": picture,
             color,
             year,
             vin,
@@ -54,6 +61,7 @@ function AutomobileForm() {
             setYear('');
             setVin('');
             setModel('');
+            setPicture('');
         }
     }
 
@@ -78,6 +86,12 @@ function AutomobileForm() {
             <div className="shadow p-4 mt-4">
               <h1>Add an automobile to inventory</h1>
               <form onSubmit={handleSubmit} id="create-automobile-form">
+                <div className="form-floating mb-3">
+                  <input onChange={handlePictureChange} value={picture} placeholder="picture"
+                  required type="text" name="picture" id="picture"
+                  className="form-control" />
+                  <label htmlFor="picture">Picture URL</label>
+                </div>
                 <div className="form-floating mb-3">
                   <input onChange={handleColorChange} value={color} placeholder="Color" required type="text" name="color" id="color" className="form-control"/>
                   <label htmlFor="color">Color</label>
