@@ -53,7 +53,7 @@ def api_list_technicians(request):
     if request.method == "GET":
         technicians = Technician.objects.all()
         return JsonResponse(
-            technicians,
+            {"technicians": technicians},
             encoder=TechnicianEncoder,
             safe=False
         )
@@ -71,7 +71,7 @@ def api_list_service_appointments(request):
     if request.method == "GET":
         service_appointments = ServiceAppointment.objects.all()
         return JsonResponse(
-            service_appointments,
+            {"service_appointments": service_appointments},
             encoder = ServiceAppointmentEncoder,
             safe=False
         )
