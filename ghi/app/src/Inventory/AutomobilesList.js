@@ -1,6 +1,6 @@
 import { React, useEffect, useState } from "react";
 
-function AutomobileList(props) {
+function AutomobileList() {
     const [automobiles, setAutomobiles] = useState([]);
     const [salerecords, setSalerecords] = useState([]);
 

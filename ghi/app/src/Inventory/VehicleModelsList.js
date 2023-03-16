@@ -1,7 +1,7 @@
 import react from 'react';
 import { useEffect, useState } from 'react';
 
-function VehicleModelList(props) {
+function VehicleModelList() {
     const [models, setModels] = useState([]);
     const [manufacturers, setManufacturers] = useState([]);
     const [manufacturer, setManufacturer] = useState('');

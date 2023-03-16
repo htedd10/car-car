@@ -1,6 +1,6 @@
 import { React, useEffect, useState } from "react";
 
-function CustomerList(props) {
+function CustomerList() {
     const [customers, setCustomers] = useState([]);
 
     const fetchData = async () => {

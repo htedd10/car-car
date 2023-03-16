@@ -1,6 +1,6 @@
 import { React, useEffect, useState } from "react";
 
-function SalesRecordList(props) {
+function SalesRecordList() {
     const [salespersons, setSalespersons] = useState([]);
     const [salesperson, setSalesperson] = useState('');
     const handleSalespersonChange = (event) => {

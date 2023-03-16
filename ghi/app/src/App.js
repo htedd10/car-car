@@ -13,10 +13,6 @@ import SalespersonList from './Sales/SalespersonList';
 import SalesPersonForm from './Sales/SalespersonForm';
 import SalesRecordForm from './Sales/SalesRecordForm';
 import SalesRecordList from './Sales/SalesRecordList';
-import TechnicianForm from './Service/TechnicianForm';
-import ListServiceApointments from './Service/ListServiceApointments';
-import CreateServiceApointments from './Service/CreateServiceAppointment';
-import ServiceHistory from './Service/ServiceHistory';
 
 function App(props) {
   return (
@@ -24,36 +20,36 @@ function App(props) {
       <Nav />
         <Routes>
           <Route path="/" element={<MainPage />} />
-          <Route path="models" element={<VehicleModelList />} />
-          <Route path="models/new" element={<CreateVehicleModelForm />} />
+
+          {/* Inventory Microservice */}
           <Route path="manufacturers">
-            <Route path="" element={<ManufacturerList manufacturers={props.manufacturers} />} />
+            <Route path="" element={<ManufacturerList/>} />
             <Route path="new" element={<ManufacturerForm />} />
           </Route>
+          <Route path="models">
+            <Route path="" element={<VehicleModelList/>} />
+            <Route path="new" element={<CreateVehicleModelForm />} />
+          </Route>
           <Route path="automobiles">
-            <Route path="" element={<AutomobileList automobiles={props.automobiles} />} />
+            <Route path="" element={<AutomobileList/>} />
             <Route path="new" element={<AutomobileForm />} />
           </Route>
+
+          {/* Sales Microservice */}
           <Route path="salesperson">
-            <Route path="" element={<SalespersonList salespersons={props.salespersons}/>} />
+            <Route path="" element={<SalespersonList/>} />
             <Route path="new" element={<SalesPersonForm />} />
           </Route>
           <Route path="customers">
-            <Route path="" element={<CustomerList customers={props.customers}/>} />
+            <Route path="" element={<CustomerList/>} />
             <Route path="new" element={<CustomerForm />} />
           </Route>
           <Route path="sales">
-            <Route path ="" element={<SalesRecordList salerecords={props.salerecords}/>} />
+            <Route path ="" element={<SalesRecordList/>} />
             <Route path="new" element={<SalesRecordForm />} />
           </Route>
-          <Route path="technician">
-            <Route path="new" element={<TechnicianForm />} />
-          </Route>
-          <Route path="service">
-            <Route path="new" element={<CreateServiceApointments />} />{/* create service appointment here */}
-            <Route path="appointments" element={<ListServiceApointments />} />
-            <Route path="history" element={< ServiceHistory />} />{/* service history here*/}
-          </Route>
+
+          {/* Services Microservice */}
         </Routes>
     </BrowserRouter>
   );

@@ -7,7 +7,7 @@ class AutomobileVO(models.Model):
 
 class Salesperson(models.Model):
     name = models.CharField(max_length=100)
-    employee_number = models.BigIntegerField()
+    employee_number = models.BigIntegerField(unique=True)
 
     def __str__(self):
         return self.name

@@ -2,49 +2,44 @@ from django.shortcuts import render
 from common.json import ModelEncoder
 from django.views.decorators.http import require_http_methods
 from django.http import JsonResponse
-from .models import AutomobileVO, Technician, ServiceAppoitment
+from .models import AutomobileVO, Technician, ServiceAppointment
 import json
 
 
 class AutomobileVOEncoder(ModelEncoder):
     model = AutomobileVO
     properties = [
-        'color',
-        'year',
         'vin',
-        'import_href'
     ]
 
 
 class TechnicianEncoder(ModelEncoder):
    model = Technician
    properties = [
+       "id",
        "name",
        "employee_number",
-       "id",
     ]
 
 
-class ServiceAppoitmentEncoder(ModelEncoder):
-    model = ServiceAppoitment
+class ServiceAppointmentEncoder(ModelEncoder):
+    model = ServiceAppointment
     properties = [
+        "id",
         "vin",
         "owner_name",
         "reason",
         "date",
-        "time",
         "technician",
-        "cancelled",
-        "completed",
-        "id"
+        "status"
 
     ]
     encoders = {
-        "technician": TechnicianEncoder()
+        "technician": TechnicianEncoder(),
         }
 
 
-@require_http_methods(["GET", "POST"])
+@require_http_methods(["GET"])
 def ListAutomobileVO(request):
     if request.method == "GET":
         automobiles = AutomobileVO.objects.all()
@@ -53,92 +48,55 @@ def ListAutomobileVO(request):
             encoder = AutomobileVOEncoder
         )
 
-
-@require_http_methods(["PUT"])
-def UpdateStatus(request, id):
-    content = json.loads(request.body)
-    if "completed" in content:
-        appt = ServiceAppoitment.objects.get(id=id)
-        appt.completed = True
-        appt.save()
+@require_http_methods(["GET", "POST", "DELETE"])
+def api_list_technicians(request):
+    if request.method == "GET":
+        technicians = Technician.objects.all()
         return JsonResponse(
-            appt,
-            encoder=ServiceAppoitmentEncoder,
+            technicians,
+            encoder=TechnicianEncoder,
             safe=False
         )
-    elif "cancelled" in content:
-        appt = ServiceAppoitment.objects.get(id=id)
-        appt.cancelled = True
-        appt.save()
+    elif request.method == "POST":
+        content = json.loads(request.body)
+        technician = Technician.objects.create(**content)
         return JsonResponse(
-            appt,
-            encoder=ServiceAppoitmentEncoder,
-            safe=False
+            technician,
+            encoder = TechnicianEncoder,
+            safe=False,
         )
-    else:
-        return JsonResponse(
-            {"error": "Invalid request"}
-        )
-
-
-@require_http_methods(["GET"])
-def ListAppointments(request, vin):
-    if vin is not None:
-        content = ServiceAppoitment.objects.filter(vin=vin)
-        return JsonResponse(
-            {"History": content},
-            encoder = ServiceAppoitmentEncoder,
-            safe=False
-        )
-    else:
-        content = ServiceAppoitment.objects.all()
-        return JsonResponse(
-            {"": content},
-            encoder = ServiceAppoitmentEncoder,
-            safe= False
-        )
-
 
 @require_http_methods(["GET", "POST"])
-def ListServices(request):
+def api_list_service_appointments(request):
     if request.method == "GET":
-        content = ServiceAppoitment.objects.all()
+        service_appointments = ServiceAppointment.objects.all()
         return JsonResponse(
-            {"Appointments": content},
-            encoder=ServiceAppoitmentEncoder,
+            service_appointments,
+            encoder = ServiceAppointmentEncoder,
+            safe=False
+        )
+    elif request.method == "POST":
+        content = json.loads(request.body)
+        technician = Technician.objects.get(id=content["technician"])
+        content["technician"] = technician
+        service_appointment = ServiceAppointment.objects.create(**content)
+        return JsonResponse(
+            service_appointment,
+            encoder=ServiceAppointmentEncoder,
+            safe=False,
+        )
+
+@require_http_methods(["GET", "DELETE"])
+def api_show_service_appointment(request, id):
+    if request.method == "GET":
+        service_appointment = ServiceAppointment.objects.get(id=id)
+        return JsonResponse(
+            service_appointment,
+            encoder=ServiceAppointmentEncoder,
             safe=False
         )
     else:
-        content = json.loads(request.body)
-        employee = Technician.objects.get(id=content["technician"])
-        content["technician"] = employee
-        try:
-            Appt = ServiceAppoitment.objects.create(**content)
-            return JsonResponse(
-                Appt,
-                encoder=ServiceAppoitmentEncoder,
-                safe=False
-            )
-        except Exception as e:
-            print(e)
-            return JsonResponse({'error': str(e)})
-
-
-@require_http_methods(["GET", "POST"])
-def CreateTechnician(request):
-    if request.method == "GET":
-        content = Technician.objects.all()
+        count, _ = ServiceAppointment.objects.filter(id=id).delete()
         return JsonResponse(
-            {"Technicians": content},
-            encoder = TechnicianEncoder,
-            safe=False
-        )
-    else:
-        content = json.loads(request.body)
-        Technician.objects.create(**content)
-        return JsonResponse(
-            content,
-            encoder = TechnicianEncoder,
-            safe=False
-
+            {"deleted": count > 0 }
         )
