@@ -86,7 +86,7 @@ def api_list_service_appointments(request):
             safe=False,
         )
 
-@require_http_methods(["GET", "DELETE"])
+@require_http_methods(["GET", "PUT" ,"DELETE"])
 def api_show_service_appointment(request, id):
     if request.method == "GET":
         service_appointment = ServiceAppointment.objects.get(id=id)
@@ -94,6 +94,15 @@ def api_show_service_appointment(request, id):
             service_appointment,
             encoder=ServiceAppointmentEncoder,
             safe=False
+        )
+    if request.method == "PUT":
+        content = json.loads(request.body)
+        ServiceAppointment.objects.filter(id=id).update(**content)
+        service_appointment = ServiceAppointment.objects.get(id=id)
+        return JsonResponse(
+            service_appointment,
+            encoder=ServiceAppointmentEncoder,
+            safe=False,
         )
     else:
         count, _ = ServiceAppointment.objects.filter(id=id).delete()
