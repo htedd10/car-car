@@ -27,42 +27,41 @@ function App(props) {
 
           {/* Inventory Microservice */}
           <Route path="manufacturers">
-            <Route path="" element={<ManufacturerList/>} />
+            <Route path="" element={<ManufacturerList />} />
             <Route path="new" element={<ManufacturerForm />} />
           </Route>
           <Route path="models">
-            <Route path="" element={<VehicleModelList/>} />
+            <Route path="" element={<VehicleModelList />} />
             <Route path="new" element={<CreateVehicleModelForm />} />
           </Route>
           <Route path="automobiles">
-            <Route path="" element={<AutomobileList/>} />
+            <Route path="" element={<AutomobileList />} />
             <Route path="new" element={<AutomobileForm />} />
           </Route>
 
           {/* Sales Microservice */}
           <Route path="salesperson">
-            <Route path="" element={<SalespersonList/>} />
+            <Route path="" element={<SalespersonList />} />
             <Route path="new" element={<SalesPersonForm />} />
           </Route>
           <Route path="customers">
-            <Route path="" element={<CustomerList/>} />
+            <Route path="" element={<CustomerList />} />
             <Route path="new" element={<CustomerForm />} />
           </Route>
           <Route path="sales">
-            <Route path ="" element={<SalesRecordList/>} />
+            <Route path ="" element={<SalesRecordList />} />
             <Route path="new" element={<SalesRecordForm />} />
           </Route>
 
           {/* Services Microservice */}
           <Route path="technicians">
-            <Route path="" element={<TechnicianList/>} />
+            <Route path="" element={<TechnicianList />} />
             <Route path="new" element={<TechnicianForm />} />
+          </Route>
           <Route path="services">
-            <Route path="" element={<ServiceList/>} />
-            <Route path="new" element={<ServiceList />} />
+            <Route path="" element={<ServiceList />} />
+            <Route path="new" element={<ServiceForm />} />
           </Route>
-          </Route>
-
         </Routes>
     </BrowserRouter>
   );
