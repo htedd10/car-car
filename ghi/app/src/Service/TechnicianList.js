@@ -1,15 +1,15 @@
 import { React, useEffect, useState } from "react";
 
 function TechnicianList() {
-    const [technicians, setTechnicians] = useState([])
+    const [technicians, setTechnicians] = useState([]);
 
     const fetchData = async () => {
-        const technicianUrl = 'http://localhost:8080/api/technicians/'
-        const technicianResponse = await fetch(technicianUrl)
+        const technicianUrl = 'http://localhost:8080/api/technicians/';
+        const technicianResponse = await fetch(technicianUrl);
 
         if (technicianResponse.ok) {
-            const data = await technicianResponse.json()
-            setTechnicians(data.technicians)
+            const data = await technicianResponse.json();
+            setTechnicians(data.technicians);
         }
     }
 
