@@ -33,8 +33,43 @@ function ServiceForm() {
         setDate(value);
     }
 
+    const [time, setTime] = useState('');
+    const handleTimeChange = (event) => {
+        const value = event.target.value;
+        setTime(value);
+    }
+
     const handleSubmit = async (event) => {
         event.preventDefault();
+
+        const data = {
+            vin,
+            owner_name,
+            reason,
+            "date": `${date} ${time}`,
+            technician,
+            "status": false
+        };
+
+        const serviceAppointmentUrl = 'http://localhost:8080/api/services/';
+        const fetchConfig = {
+            method: "post",
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        }
+        const response = await fetch (serviceAppointmentUrl, fetchConfig);
+
+        if (response.ok) {
+            const newServiceAppointment = await response.json();
+            setVin('');
+            setOwnerName('');
+            setReason('');
+            setDate('');
+            setTime('');
+            setTechnician('');
+        }
     }
 
     const fetchData = async () => {
@@ -73,6 +108,10 @@ function ServiceForm() {
                 <div className="form-floating mb-3">
                   <input onChange={handleDateChange} value={date} placeholder="Date" required type="date" name="date" id="date" className="form-control"/>
                   <label htmlFor="date">Date</label>
+                </div>
+                <div className="form-floating mb-3">
+                  <input onChange={handleTimeChange} value={time} placeholder="Time" required type="time" name="time" id="time" className="form-control"/>
+                  <label htmlFor="time">Time</label>
                 </div>
                 <div className="mb-3">
                   <select onChange={handleTechnicianChange} value={technician} required id="technician" name="technician" className="form-select">
