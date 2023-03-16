@@ -13,6 +13,10 @@ import SalespersonList from './Sales/SalespersonList';
 import SalesPersonForm from './Sales/SalespersonForm';
 import SalesRecordForm from './Sales/SalesRecordForm';
 import SalesRecordList from './Sales/SalesRecordList';
+import ServiceList from './Service/ServiceList';
+import ServiceForm from './Service/ServiceForm';
+import TechnicianList from './Service/TechnicianList';
+import TechnicianForm from './Service/TechnicianForm';
 
 function App(props) {
   return (
@@ -50,6 +54,15 @@ function App(props) {
           </Route>
 
           {/* Services Microservice */}
+          <Route path="technicians">
+            <Route path="" element={<TechnicianList/>} />
+            <Route path="new" element={<TechnicianForm />} />
+          <Route path="services">
+            <Route path="" element={<ServiceList/>} />
+            <Route path="new" element={<ServiceList />} />
+          </Route>
+          </Route>
+
         </Routes>
     </BrowserRouter>
   );
