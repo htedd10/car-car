@@ -1,22 +1,33 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import MainPage from './MainPage';
 import Nav from './Nav';
+// Manufacturer Imports
 import ManufacturerList from './Inventory/ManufacturerList';
 import ManufacturerCreateForm from './Inventory/ManufacturerCreateForm';
 import ManufacturerUpdateForm from './Inventory/ManufacturerUpdateForm';
 import ManufacturerDeleteForm from './Inventory/ManufacturerDeleteForm';
+
+// Vehicle Model Imports
 import VehicleModelList from './Inventory/VehicleModelsList';
 import CreateVehicleModelForm from './Inventory/VehicleModelsCreateForm';
 import UpdateVehicleModelForm from './Inventory/VehicleModelsUpdateForm';
 import DeleteVehicleModelForm from './Inventory/VehicleModelsDeleteForm';
+
+// Automobile Imports
 import AutomobileCreateForm from './Inventory/AutomobileCreateForm';
 import AutomobileList from './Inventory/AutomobilesList';
+import AutomobileUpdateForm from './Inventory/AutomobileUpdateForm';
+import AutomobileDeleteForm from './Inventory/AutomobileDeleteForm';
+
+// Sale Imports
 import CustomerList from './Sales/CustomerList';
 import CustomerCreateForm from './Sales/CustomerCreateForm';
 import SalespersonList from './Sales/SalespersonList';
 import SalesPersonCreateForm from './Sales/SalespersonCreateForm';
 import SalesRecordCreateForm from './Sales/SalesRecordCreateForm';
 import SalesRecordList from './Sales/SalesRecordList';
+
+// Service Imports
 import ServiceList from './Service/ServiceList';
 import ServiceCreateForm from './Service/ServiceCreateForm';
 import ServiceHistory from './Service/ServiceHistory';
@@ -46,6 +57,8 @@ function App(props) {
           <Route path="automobiles">
             <Route path="" element={<AutomobileList />} />
             <Route path="new" element={<AutomobileCreateForm />} />
+            <Route path="update" element={<AutomobileUpdateForm />} />
+            <Route path="delete" element={<AutomobileDeleteForm />} />
           </Route>
 
           {/* Sales Microservice */}

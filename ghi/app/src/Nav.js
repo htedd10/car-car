@@ -29,6 +29,8 @@ function Nav() {
                     <div className="dropdown-divider"></div>
                     <Link className="dropdown-item" to="/automobiles">Automobiles</Link>
                     <Link className="dropdown-item" to="/automobiles/new">Create Automobile</Link>
+                    <Link className="dropdown-item" to="/automobiles/update">Update Automobile</Link>
+                    <Link className="dropdown-item" to="/automobiles/delete">Delete Automobile</Link>
                   </li>
                 </ul>
             </li>
