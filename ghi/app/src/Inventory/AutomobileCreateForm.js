@@ -1,6 +1,6 @@
 import { React, useEffect, useState } from "react";
 
-function AutomobileForm() {
+function AutomobileCreateForm() {
     const [models, setModels] = useState([]);
 
     const [picture, setPicture] = useState('');
@@ -125,4 +125,4 @@ function AutomobileForm() {
     )
 }
 
-export default AutomobileForm
+export default AutomobileCreateForm

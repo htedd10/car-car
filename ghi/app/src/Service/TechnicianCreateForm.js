@@ -1,6 +1,6 @@
 import { React, useState } from "react";
 
-function SalesPersonForm() {
+function TechnicianCreateForm() {
     const [name, setName] = useState('');
     const handleNameChange = (event) => {
         const value = event.target.value;
@@ -21,7 +21,7 @@ function SalesPersonForm() {
             employee_number,
         }
 
-        const salespersonUrl = 'http://localhost:8090/api/salesperson/';
+        const technicianUrl = 'http://localhost:8080/api/technicians/';
         const fetchConfig = {
             method: "post",
             body: JSON.stringify(data),
@@ -29,10 +29,10 @@ function SalesPersonForm() {
                 'Content-Type': 'application/json',
             },
         };
-        const response = await fetch (salespersonUrl, fetchConfig);
+        const response = await fetch (technicianUrl, fetchConfig);
 
         if (response.ok) {
-            const newSalesPerson = await response.json();
+            const newTechnician = await response.json();
             setName('');
             setEmployeeNumber('');
         }
@@ -43,7 +43,7 @@ function SalesPersonForm() {
         <div className="row">
           <div className="offset-3 col-6">
             <div className="shadow p-4 mt-4">
-              <h1>Create a new salesperson</h1>
+              <h1>Create a new technician</h1>
               <form onSubmit={handleSubmit} id="create-salesperson-form">
                 <div className="form-floating mb-3">
                   <input onChange={handleNameChange} value={name} placeholder="Name" required type="text" name="name" id="name" className="form-control"/>
@@ -62,4 +62,4 @@ function SalesPersonForm() {
     )
 }
 
-export default SalesPersonForm
+export default TechnicianCreateForm

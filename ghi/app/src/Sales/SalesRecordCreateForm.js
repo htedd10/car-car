@@ -1,6 +1,6 @@
 import { React, useEffect, useState } from "react";
 
-function SalesPersonForm() {
+function SalesPersonCreateForm() {
     const [automobileVOs, setAutomobileVOs] = useState([]);
     const [automobile, setAutomobileVO] = useState('');
     const handleAutomobileChange = (event) => {
@@ -158,4 +158,4 @@ function SalesPersonForm() {
     )
 }
 
-export default SalesPersonForm
+export default SalesPersonCreateForm

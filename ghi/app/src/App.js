@@ -1,23 +1,23 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import MainPage from './MainPage';
 import Nav from './Nav';
-import VehicleModelList from './Inventory/VehicleModelsList';
 import ManufacturerList from './Inventory/ManufacturerList';
-import ManufacturerForm from './Inventory/ManufacturerForm';
-import AutomobileForm from './Inventory/AutomobileForm';
+import ManufacturerCreateForm from './Inventory/ManufacturerCreateForm';
+import VehicleModelList from './Inventory/VehicleModelsList';
+import CreateVehicleModelForm from './Inventory/VehicleModelsCreateForm';
+import AutomobileCreateForm from './Inventory/AutomobileCreateForm';
 import AutomobileList from './Inventory/AutomobilesList';
-import CreateVehicleModelForm from './Inventory/VehicleModelsForm';
 import CustomerList from './Sales/CustomerList';
-import CustomerForm from './Sales/CustomerForm';
+import CustomerCreateForm from './Sales/CustomerCreateForm';
 import SalespersonList from './Sales/SalespersonList';
-import SalesPersonForm from './Sales/SalespersonForm';
-import SalesRecordForm from './Sales/SalesRecordForm';
+import SalesPersonCreateForm from './Sales/SalespersonCreateForm';
+import SalesRecordCreateForm from './Sales/SalesRecordCreateForm';
 import SalesRecordList from './Sales/SalesRecordList';
 import ServiceList from './Service/ServiceList';
-import ServiceForm from './Service/ServiceForm';
+import ServiceCreateForm from './Service/ServiceCreateForm';
 import ServiceHistory from './Service/ServiceHistory';
 import TechnicianList from './Service/TechnicianList';
-import TechnicianForm from './Service/TechnicianForm';
+import TechnicianCreateForm from './Service/TechnicianCreateForm';
 
 function App(props) {
   return (
@@ -29,7 +29,7 @@ function App(props) {
           {/* Inventory Microservice */}
           <Route path="manufacturers">
             <Route path="" element={<ManufacturerList />} />
-            <Route path="new" element={<ManufacturerForm />} />
+            <Route path="new" element={<ManufacturerCreateForm />} />
           </Route>
           <Route path="models">
             <Route path="" element={<VehicleModelList />} />
@@ -37,31 +37,31 @@ function App(props) {
           </Route>
           <Route path="automobiles">
             <Route path="" element={<AutomobileList />} />
-            <Route path="new" element={<AutomobileForm />} />
+            <Route path="new" element={<AutomobileCreateForm />} />
           </Route>
 
           {/* Sales Microservice */}
           <Route path="salesperson">
             <Route path="" element={<SalespersonList />} />
-            <Route path="new" element={<SalesPersonForm />} />
+            <Route path="new" element={<SalesPersonCreateForm />} />
           </Route>
           <Route path="customers">
             <Route path="" element={<CustomerList />} />
-            <Route path="new" element={<CustomerForm />} />
+            <Route path="new" element={<CustomerCreateForm />} />
           </Route>
           <Route path="sales">
             <Route path ="" element={<SalesRecordList />} />
-            <Route path="new" element={<SalesRecordForm />} />
+            <Route path="new" element={<SalesRecordCreateForm />} />
           </Route>
 
           {/* Services Microservice */}
           <Route path="technicians">
             <Route path="" element={<TechnicianList />} />
-            <Route path="new" element={<TechnicianForm />} />
+            <Route path="new" element={<TechnicianCreateForm />} />
           </Route>
           <Route path="services">
             <Route path="" element={<ServiceList />} />
-            <Route path="new" element={<ServiceForm />} />
+            <Route path="new" element={<ServiceCreateForm />} />
             <Route path="history" element={<ServiceHistory />} />
           </Route>
         </Routes>

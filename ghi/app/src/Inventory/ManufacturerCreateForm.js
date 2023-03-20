@@ -1,6 +1,6 @@
 import { React, useEffect, useState } from "react";
 
-function ManufacturerForm() {
+function ManufacturerCreateForm() {
     const [name, setName] = useState('');
 
     const handleNameChange = (event) => {
@@ -50,4 +50,4 @@ function ManufacturerForm() {
     )
 }
 
-export default ManufacturerForm
+export default ManufacturerCreateForm

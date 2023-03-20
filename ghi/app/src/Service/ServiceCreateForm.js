@@ -1,6 +1,6 @@
 import { React, useEffect, useState } from "react";
 
-function ServiceForm() {
+function ServiceCreateForm() {
     const [technicians, setTechnicians] = useState([]);
 
     const [technician, setTechnician] = useState('');
@@ -134,4 +134,4 @@ function ServiceForm() {
     )
 }
 
-export default ServiceForm
+export default ServiceCreateForm
