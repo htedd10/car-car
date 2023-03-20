@@ -44,7 +44,6 @@ function ServiceHistory() {
                 <thead>
                     <tr>
                         <th>VIN</th>
-                        <th>VIP</th>
                         <th>Finished</th>
                         <th>Owner Name</th>
                         <th>Reason</th>
@@ -60,7 +59,6 @@ function ServiceHistory() {
                             return (
                                 <tr key={serviceAppointment.id}>
                                     <th>{serviceAppointment.vin}</th>
-                                    <th>VIP</th>
                                     <th>No</th>
                                     <th>{serviceAppointment.owner_name}</th>
                                     <th>{serviceAppointment.reason}</th>
@@ -73,7 +71,6 @@ function ServiceHistory() {
                             return (
                                 <tr key={serviceAppointment.id}>
                                 <th>{serviceAppointment.vin}</th>
-                                <th>VIP</th>
                                 <th>Yes</th>
                                 <th>{serviceAppointment.owner_name}</th>
                                 <th>{serviceAppointment.reason}</th>
