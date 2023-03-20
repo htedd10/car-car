@@ -58,26 +58,26 @@ function ServiceHistory() {
                         if (serviceAppointment.status == false) {
                             return (
                                 <tr key={serviceAppointment.id}>
-                                    <th>{serviceAppointment.vin}</th>
-                                    <th>No</th>
-                                    <th>{serviceAppointment.owner_name}</th>
-                                    <th>{serviceAppointment.reason}</th>
-                                    <th>{date.toLocaleDateString()}</th>
-                                    <th>{date.toLocaleTimeString()}</th>
-                                    <th>{serviceAppointment.technician.name}</th>
+                                    <td>{serviceAppointment.vin}</td>
+                                    <td>No</td>
+                                    <td>{serviceAppointment.owner_name}</td>
+                                    <td>{serviceAppointment.reason}</td>
+                                    <td>{date.toLocaleDateString()}</td>
+                                    <td>{date.toLocaleTimeString()}</td>
+                                    <td>{serviceAppointment.technician.name}</td>
                                 </tr>
                             )
                         } else {
                             return (
                                 <tr key={serviceAppointment.id}>
-                                <th>{serviceAppointment.vin}</th>
-                                <th>Yes</th>
-                                <th>{serviceAppointment.owner_name}</th>
-                                <th>{serviceAppointment.reason}</th>
-                                <th>{date.toLocaleDateString()}</th>
-                                <th>{date.toLocaleTimeString()}</th>
-                                <th>{serviceAppointment.technician.name}</th>
-                            </tr>
+                                    <td>{serviceAppointment.vin}</td>
+                                    <td>Yes</td>
+                                    <td>{serviceAppointment.owner_name}</td>
+                                    <td>{serviceAppointment.reason}</td>
+                                    <td>{date.toLocaleDateString()}</td>
+                                    <td>{date.toLocaleTimeString()}</td>
+                                    <td>{serviceAppointment.technician.name}</td>
+                                </tr>
                             )
                         }
                     })}
