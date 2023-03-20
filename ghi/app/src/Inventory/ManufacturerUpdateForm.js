@@ -59,17 +59,19 @@ function ManufacturerCreateForm() {
           <div className="offset-3 col-6">
             <div className="shadow p-4 mt-4">
               <h1>Update a manufacturer</h1>
-              <form onSubmit={handleSubmit} id="create-manufacturer-form">
-                <select onChange={handleManufacturerChange} value={manufacturer} required id="salespersons" name="salespersons" className="form-select">
-                    <option value="">Choose a manufacturer</option>
-                    {manufacturers.map(manufacturer => {
-                        return (
-                            <option key={manufacturer.id} value={manufacturer.id}>
-                                {manufacturer.name}
-                            </option>
-                        )
-                    })}
-                </select>
+              <form onSubmit={handleSubmit} id="update-manufacturer-form">
+                <div className="mb-3">
+                    <select onChange={handleManufacturerChange} value={manufacturer} required id="manufacturers" name="manufacturers" className="form-select">
+                        <option value="">Choose a manufacturer</option>
+                        {manufacturers.map(manufacturer => {
+                            return (
+                                <option key={manufacturer.id} value={manufacturer.id}>
+                                    {manufacturer.name}
+                                </option>
+                            )
+                        })}
+                    </select>
+                </div>
                 <div className="form-floating mb-3">
                   <input onChange={handleNameChange} placeholder="name" required type="text" name="name" id="name" className="form-control" value={name}/>
                   <label htmlFor="name">Name</label>

@@ -44,17 +44,19 @@ function ManufacturerDeleteForm() {
           <div className="offset-3 col-6">
             <div className="shadow p-4 mt-4">
               <h1>Delete a manufacturer</h1>
-              <form onSubmit={handleSubmit} id="create-manufacturer-form">
-                <select onChange={handleManufacturerChange} value={manufacturer} required id="salespersons" name="salespersons" className="form-select">
-                    <option value="">Choose a manufacturer</option>
-                    {manufacturers.map(manufacturer => {
-                        return (
-                            <option key={manufacturer.id} value={manufacturer.id}>
-                                {manufacturer.name}
-                            </option>
-                        )
-                    })}
-                </select>
+              <form onSubmit={handleSubmit} id="delete-manufacturer-form">
+                <div className="mb-3">
+                  <select onChange={handleManufacturerChange} value={manufacturer} required id="manufacturers" name="manufacturers" className="form-select">
+                      <option value="">Choose a manufacturer</option>
+                      {manufacturers.map(manufacturer => {
+                          return (
+                              <option key={manufacturer.id} value={manufacturer.id}>
+                                  {manufacturer.name}
+                              </option>
+                          )
+                      })}
+                  </select>
+                </div>
                 <button className="btn btn-danger">Delete</button>
               </form>
             </div>
