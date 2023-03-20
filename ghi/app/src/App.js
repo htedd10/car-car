@@ -3,6 +3,8 @@ import MainPage from './MainPage';
 import Nav from './Nav';
 import ManufacturerList from './Inventory/ManufacturerList';
 import ManufacturerCreateForm from './Inventory/ManufacturerCreateForm';
+import ManufacturerUpdateForm from './Inventory/ManufacturerUpdateForm';
+import ManufacturerDeleteForm from './Inventory/ManufacturerDeleteForm';
 import VehicleModelList from './Inventory/VehicleModelsList';
 import CreateVehicleModelForm from './Inventory/VehicleModelsCreateForm';
 import AutomobileCreateForm from './Inventory/AutomobileCreateForm';
@@ -30,6 +32,8 @@ function App(props) {
           <Route path="manufacturers">
             <Route path="" element={<ManufacturerList />} />
             <Route path="new" element={<ManufacturerCreateForm />} />
+            <Route path="update" element={<ManufacturerUpdateForm />} />
+            <Route path="delete" element={<ManufacturerDeleteForm />} />
           </Route>
           <Route path="models">
             <Route path="" element={<VehicleModelList />} />

@@ -19,6 +19,8 @@ function Nav() {
                   <li>
                     <Link className="dropdown-item" to="/manufacturers">Manufacturers</Link>
                     <Link className="dropdown-item" to="/manufacturers/new">Create Manufacturer</Link>
+                    <Link className="dropdown-item" to="/manufacturers/update">Update Manufacturer</Link>
+                    <Link className="dropdown-item" to="/manufacturers/delete">Delete Manufacturer</Link>
                     <div className="dropdown-divider"></div>
                     <Link className="dropdown-item" to="/models">Models</Link>
                     <Link className="dropdown-item" to="/models/new">Create Model</Link>
