@@ -56,18 +56,33 @@ function ServiceHistory() {
                 <tbody>
                     {serviceAppointments.map(serviceAppointment => {
                         const date = new Date(serviceAppointment.date);
-                        return (
-                            <tr key={serviceAppointment.id}>
+                        if (serviceAppointment.status == false) {
+                            return (
+                                <tr key={serviceAppointment.id}>
+                                    <th>{serviceAppointment.vin}</th>
+                                    <th>VIP</th>
+                                    <th>No</th>
+                                    <th>{serviceAppointment.owner_name}</th>
+                                    <th>{serviceAppointment.reason}</th>
+                                    <th>{date.toLocaleDateString()}</th>
+                                    <th>{date.toLocaleTimeString()}</th>
+                                    <th>{serviceAppointment.technician.name}</th>
+                                </tr>
+                            )
+                        } else {
+                            return (
+                                <tr key={serviceAppointment.id}>
                                 <th>{serviceAppointment.vin}</th>
                                 <th>VIP</th>
-                                <th>{serviceAppointment.status}</th>
+                                <th>Yes</th>
                                 <th>{serviceAppointment.owner_name}</th>
                                 <th>{serviceAppointment.reason}</th>
                                 <th>{date.toLocaleDateString()}</th>
                                 <th>{date.toLocaleTimeString()}</th>
                                 <th>{serviceAppointment.technician.name}</th>
                             </tr>
-                        )
+                            )
+                        }
                     })}
                 </tbody>
             </table>
