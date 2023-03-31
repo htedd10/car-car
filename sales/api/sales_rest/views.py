@@ -191,6 +191,42 @@ def api_list_salerecords(request):
             safe=False,
         )
 
-@require_http_methods(["GET","PUT","DELETE"])
+@require_http_methods(["GET","PUT"])
 def api_show_salerecord(request,id):
-    pass
+    if request.method == "GET":
+        try:
+            salerecord = SaleRecord.objects.get(id=id)
+            return JsonResponse(
+                {"salerecord": salerecord},
+                encoder=SaleRecordEncoder
+            )
+        except SaleRecord.DoesNotExist:
+            return JsonResponse(
+                {"message": "salerecord does not exist"}
+            )
+    else:
+        content = json.loads(request.body)
+        try:
+            if "salesperson" in content:
+                salesperson = Salesperson.objects.get(id=content["salesperson"])
+                content["salesperson"] = salesperson
+        except Salesperson.DoesNotExist:
+            return JsonResponse(
+                {"message": "Invalid salesperson"},
+                status=400
+            )
+        try:
+            if "customer" in content:
+                customer = Customer.objects.get(id=content["customer"])
+                content["customer"] = customer
+        except Customer.DoesNotExist:
+            return JsonResponse(
+                {"message": "Invalid customer"},
+                status=400
+            )
+        SaleRecord.objects.filter(id=id).update(**content)
+        salerecord = SaleRecord.objects.get(id=id)
+        return JsonResponse(
+            {"salerecord": salerecord},
+            encoder=SaleRecordEncoder
+        )
