@@ -102,7 +102,7 @@ function AutomobileUpdateForm() {
                   <input onChange={handleYearChange} value={year} placeholder="Year" required type="text" name="year" id="year" className="form-control"/>
                   <label htmlFor="year">Year</label>
                 </div>
-                <button className="btn btn-primary">Update</button>
+                <button className="btn btn-warning">Update</button>
               </form>
             </div>
           </div>

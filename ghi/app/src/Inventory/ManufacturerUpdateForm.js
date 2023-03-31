@@ -76,7 +76,7 @@ function ManufacturerCreateForm() {
                   <input onChange={handleNameChange} placeholder="name" required type="text" name="name" id="name" className="form-control" value={name}/>
                   <label htmlFor="name">Name</label>
                 </div>
-                <button className="btn btn-primary">Update</button>
+                <button className="btn btn-warning">Update</button>
               </form>
             </div>
           </div>

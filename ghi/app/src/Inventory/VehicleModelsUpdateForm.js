@@ -77,7 +77,7 @@ function UpdateVehicleModelForm(props) {
                             className="form-control" />
                             <label htmlFor="name">Name</label>
                         </div>
-                        <button className="btn btn-primary">Update</button>
+                        <button className="btn btn-warning">Update</button>
                     </form>
                 </div>
             </div>

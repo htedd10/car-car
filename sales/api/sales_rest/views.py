@@ -69,6 +69,40 @@ def api_list_salesperson(request):
             safe=False,
         )
 
+@require_http_methods(["GET","PUT","DELETE"])
+def api_show_salesperson(request,id):
+    if request.method == "GET":
+        try:
+            salesperson = Salesperson.objects.get(id=id)
+            return JsonResponse(
+                {"salesperson": salesperson},
+                encoder=SalespersonEncoder
+            )
+        except:
+            pass
+    elif request.method == "PUT":
+        content = json.loads(request.body)
+        salesperson = Salesperson.objects.get(id=id)
+        props = ["name", "employee_number"]
+        for prop in props:
+            if prop in content:
+                setattr(salesperson, prop, content[prop])
+        salesperson.save()
+        return JsonResponse(
+            {"salesperson": salesperson},
+            encoder=SalespersonEncoder
+        )
+    else:
+        try:
+            count , _ = Salesperson.objects.get(id=id).delete()
+            return JsonResponse(
+                {"deleted": count > 0 }
+            )
+        except Salesperson.DoesNotExist:
+            return JsonResponse(
+                {"message": "salesperson does not exist"}
+            )
+
 @require_http_methods(["GET", "POST"])
 def api_list_customers(request):
     if request.method == "GET":
@@ -85,6 +119,10 @@ def api_list_customers(request):
             encoder=CustomerEncoder,
             safe=False,
         )
+
+@require_http_methods(["GET","PUT","DELETE"])
+def api_show_customer(request,id):
+    pass
 
 @require_http_methods(["GET", "POST"])
 def api_list_salerecords(request):
@@ -137,3 +175,7 @@ def api_list_salerecords(request):
             encoder=SaleRecordEncoder,
             safe=False,
         )
+
+@require_http_methods(["GET","PUT","DELETE"])
+def api_show_salerecord(request,id):
+    pass
