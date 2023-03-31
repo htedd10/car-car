@@ -69,7 +69,7 @@ def api_list_salesperson(request):
             safe=False,
         )
 
-@require_http_methods(["GET","PUT","DELETE"])
+@require_http_methods(["GET","PUT"])
 def api_show_salesperson(request,id):
     if request.method == "GET":
         try:
@@ -78,8 +78,11 @@ def api_show_salesperson(request,id):
                 {"salesperson": salesperson},
                 encoder=SalespersonEncoder
             )
-        except:
-            pass
+        except Salesperson.DoesNotExist:
+            return JsonResponse(
+                {"message": "salesperson does not exist"}
+            )
+
     elif request.method == "PUT":
         content = json.loads(request.body)
         salesperson = Salesperson.objects.get(id=id)
@@ -92,16 +95,6 @@ def api_show_salesperson(request,id):
             {"salesperson": salesperson},
             encoder=SalespersonEncoder
         )
-    else:
-        try:
-            count , _ = Salesperson.objects.get(id=id).delete()
-            return JsonResponse(
-                {"deleted": count > 0 }
-            )
-        except Salesperson.DoesNotExist:
-            return JsonResponse(
-                {"message": "salesperson does not exist"}
-            )
 
 @require_http_methods(["GET", "POST"])
 def api_list_customers(request):
@@ -120,9 +113,31 @@ def api_list_customers(request):
             safe=False,
         )
 
-@require_http_methods(["GET","PUT","DELETE"])
+@require_http_methods(["GET","PUT"])
 def api_show_customer(request,id):
-    pass
+    if request.method == "GET":
+        try:
+            customer = Customer.objects.get(id=id)
+            return JsonResponse(
+                {"customer": customer},
+                encoder=CustomerEncoder
+            )
+        except Customer.DoesNotExist:
+            return JsonResponse(
+                {"message": "customer does not exist"}
+            )
+    elif request.method == "PUT":
+        content = json.loads(request.body)
+        customer = Customer.objects.get(id=id)
+        props = ["name", "address", "phone_number"]
+        for prop in props:
+            if prop in content:
+                setattr(customer, prop, content[prop])
+        customer.save()
+        return JsonResponse(
+            {"customer": customer},
+            encoder=CustomerEncoder
+        )
 
 @require_http_methods(["GET", "POST"])
 def api_list_salerecords(request):
