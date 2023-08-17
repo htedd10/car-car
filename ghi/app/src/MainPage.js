@@ -1,23 +1,24 @@
 import { React, useState, useEffect } from 'react';
 
 function AutomobileColumn(props) {
+
   return (
     <div className="col">
       {props.list.map(data => {
         return (
             <div key={data.href} className="card mb-3 shadow">
-            <img src={data.model.picture_url} className="card-img-top" />
-            <div className="card-body">
-              <h5 className="card-title fw-bold">{data.model.name}</h5>
-              <h6 className="card-subtitle text-muted">{data.model.manufacturer.name}</h6>
-              <p className="card-text fw-light mt-1 mb-0">Year: {data.year}</p>
-              <p className="card-text fw-light mb-0">Color: {data.color}</p>
-            </div>
-            <div className="card-footer">
-              <h6 className="card-subtitle text-muted">
-                {data.vin}
-              </h6>
-            </div>
+              <img alt="car image" src={data.picture_url} className="card-img-top" />
+              <div className="card-body">
+                <h5 className="card-title fw-bold">{data.model.name}</h5>
+                <h6 className="card-subtitle text-muted">{data.model.manufacturer.name}</h6>
+                <p className="card-text fw-light mt-1 mb-0">Year: {data.year}</p>
+                <p className="card-text fw-light mb-0">Color: {data.color}</p>
+              </div>
+              <div className="card-footer">
+                <h6 className="card-subtitle text-muted">
+                  {data.vin}
+                </h6>
+              </div>
             </div>
         );
       })}
